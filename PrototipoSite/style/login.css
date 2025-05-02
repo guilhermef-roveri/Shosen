@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto',sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden; 
+    /* Overflow para não ter scroll na página */
+}
+
+.imgEsquerda{
+    width: 50%;
+    display: block;
+    height: auto;
+}
+
+.pngLogin{
+    width: 100%;
+}
+
+.imgLogo{
+   width: 150px;
+   height: 150px;
+   margin-bottom: 60px;
+}
+
+.containerLogin{
+    background-color: rgba(33, 35, 34, 1);
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fieldLogin{
+    margin-top: 12px;
+    color: rgba(105, 111, 121, 1);
+}
+
+.fieldLogin button{
+  width: 405px;
+  height: 40px;
+  background-color: rgba(169, 15, 15, 1);
+  color: white;
+  border: 1px solid transparent;
+  font-size: 24px;
+  border-radius: 8px;
+}
+
+.fieldLogin input{
+    width: 400px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.fieldLogin p{
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+.textoRegistro{
+    margin-top: 70px;
+    align-self: center;
+}

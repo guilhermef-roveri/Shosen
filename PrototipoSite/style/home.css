@@ -64,3 +64,19 @@
     height: 500px;
     margin: 20px;
 }
+
+.meusSenseis{
+background-color: rgba(33, 35, 34, 1);
+width: 100%;
+height: 1200px;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.sensei{
+    width: 20%;
+    height: 50%;
+    margin: 50px;
+}
