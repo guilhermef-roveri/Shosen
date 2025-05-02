@@ -26,6 +26,7 @@ body{
    width: 150px;
    height: 150px;
    margin-bottom: 60px;
+   cursor: pointer;
 }
 
 .containerLogin{

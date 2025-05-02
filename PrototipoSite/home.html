@@ -16,8 +16,8 @@
             <li>História</li>
             <li>Objetivo</li>
             <li>Curiosidades</li>
-            <li class="btnEntrar">Entrar</li>
-            <li class="btnRegistro">Criar nova conta</li>
+            <li class="btnEntrar" onclick="Login()">Entrar</li>
+            <li class="btnRegistro" onclick="Registro()">Criar nova conta</li>
         </ul>
     </nav>
     <section class="cardHome">
@@ -86,3 +86,12 @@
 </body>
 
 </html>
+
+<script>
+function Login(){
+    window.location.href = "login.html";
+}
+function Registro(){
+    window.location.href = "registro.html";
+}
+</script>
