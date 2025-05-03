@@ -89,3 +89,34 @@
   height: 500px;
   margin: 20px;
 }
+
+/* Diferenças Judo e Jiu */
+
+.diferencas{
+    width: 100%;
+    height: 450px;
+    display: flex;
+   
+    align-items: center;
+}
+
+.diferencas p{
+    width: 80%;
+    height: 50px;
+    background-color: rgba(5, 21, 20, 1);
+    color: white;
+    margin-top: 20px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerDiferencas{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
