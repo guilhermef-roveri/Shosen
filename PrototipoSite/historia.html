@@ -11,11 +11,11 @@
 
 <body>
     <nav>
-        <img src="assets/Logo.png" class="LogoHeader">
+        <img src="assets/Logo.png" class="LogoHeader" onclick="Home()" style="cursor: pointer;">
         <ul class="links">
             <li>História</li>
             <li>Objetivo</li>
-            <li>Curiosidades</li>
+            <li class="btnCuriosidades" onclick="Curiosidades()">Curiosidades</li>
             <li class="btnEntrar" onclick="Login()">Entrar</li>
             <li class="btnRegistro" onclick="Registro()">Criar nova conta</li>
         </ul>
@@ -125,4 +125,11 @@
     function Registro() {
         window.location.href = "registro.html";
     }
+    function Curiosidades(){
+        window.location.href = "curiosidades.html";
+    }
+    function Home(){
+        window.location.href = "home.html"
+    }
+
 </script>
