@@ -1,0 +1,103 @@
+/* Imagem de Fundo principal da página */
+
+  .imagemHistoria img{
+    width: 100%;
+    height: 750px;
+  }
+
+/* Cards de Faixas  */
+
+.infoFaixas{
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 120px;
+}
+
+.textoFaixas{
+    display: flex;
+    flex-direction: column;    
+    margin: 15px;
+}
+
+.textoFaixas h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px
+}
+
+.textoFaixas p{
+    text-align: center;
+    margin-top: 100px;
+    line-height: 50px;
+
+}
+
+.imagensFaixas{
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+}
+/* Golpes proibidos */
+.infoGolpes{
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgba(5, 21, 20, 1);
+    color: white;
+  }
+  
+  .textoGolpes{
+    display: flex;
+    flex-direction: column;    
+    margin: 15px;
+  }
+  
+  .textoGolpes h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px
+  }
+  
+  .textoGolpes p{
+    text-align: center;
+    margin-top: 100px;
+    line-height: 50px;
+  
+  }
+  
+  .imagensGolpes{
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+  }
+  
+  /* Curiosidades Olimpíadas */
+  .curiosidadesOlimpiadas{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .infoOlimpiadas{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    
+  }
+  .sectionOlimpiada{
+    width: 30%;
+    height: 70%;
+  }
+
+  .imgOlimpiadas{
+    width: 50%;
+    height: 500px;
+  }

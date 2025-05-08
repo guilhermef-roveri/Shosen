@@ -1,0 +1,129 @@
+
+/* Imagem Home e botão */
+.cardHome{
+  background-image: url("../assets/backgroundHome.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  height: 800px;
+}
+
+.textoHome{
+    font-size: 80px;
+    margin: 20px;
+}
+
+.infoHome{
+    width: 70%;
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.cardHome button{
+    background-color: rgba(169, 15, 15, 1);
+    color: white;
+    height: 70px;
+    width: 150px;
+    border-radius: 12px;
+    font-size: 24px;
+    border: 1px solid transparent;
+}
+
+/* Inspiração Pessoal e Sobre Nós */
+
+.infoShosen{
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.textoShosen{
+    display: flex;
+    flex-direction: column;    
+    margin: 15px;
+}
+
+.textoShosen h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px
+}
+
+.textoShosen p{
+    text-align: center;
+    margin-top: 100px;
+    line-height: 50px;
+
+}
+
+.imagensShosen{
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+}
+
+/* Card Triplo dos Senseis */
+.meusSenseis{
+background-color: rgba(33, 35, 34, 1);
+width: 100%;
+height: auto;
+color: white;
+}
+
+.sensei{
+    width: auto;
+    height: 30%;
+   margin-top: 24px;
+   margin-bottom: 20px;
+}
+.sensei img{
+    width: 320px;
+    height: 320px;
+}
+
+.cardTriploSensei{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+/* Section Quiz */
+
+.quizSection{
+    width: 100%;
+    height: 200px;
+    background-color: rgba(33, 35, 34, 1);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 60px;
+    align-items: center;
+}
+
+.infoQuiz{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.btnQuiz{
+    background-color: rgba(169, 15, 15, 1);
+    color: white;
+    height: 50px;
+    width: 130px;
+    border-radius: 12px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    margin-right: 20px;
+}
