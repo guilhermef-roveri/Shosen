@@ -1,0 +1,66 @@
+.telaTreino{
+    background-color: rgba(33, 35, 34, 1);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+
+.telaTreino img{
+    margin-top: 60px;
+    margin-left: 40px;
+    width: 40%;
+    height: 85%;
+}
+
+.div_horasDeTreino{
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+    height: 90vh;
+}
+
+.div_horasDeTreino h1{
+    color: rgba(169, 15, 15, 1);
+}
+
+.div_horasDeTreino .textoTreino{
+font-size: 20px;
+line-height: 32px;
+text-align: center;
+}
+
+.div_cardHoras{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 25vh;
+    border: 1px solid black;
+    background-color: rgba(19, 23, 21, 1);
+    padding: 16px;
+    justify-content: space-around;
+}
+
+.div_cardHoras h2{
+    color: rgba(169, 15, 15, 1);
+}
+
+.div_cardHoras input{
+    border-radius: 6px;
+    height: 20%;
+    ;
+}
+.div_cardHoras button{
+    background-color: rgba(169, 15, 15, 1); 
+    border-radius: 6px;
+    color: white;
+    height: 20%;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid transparent;
+}
