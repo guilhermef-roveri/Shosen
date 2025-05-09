@@ -1,4 +1,4 @@
-<img src="https://github.com/usuario/repo/assets/logo.svg" alt="Logo">
+<img src="/public/assets/Logo.png" alt="Logo">
 
 # Shosen 🥋⚫
 
