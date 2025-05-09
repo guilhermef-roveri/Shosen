@@ -1,6 +1,7 @@
-<img src="/public/assets/Logo.png" alt="Logo">
+![Logo](https://github.com/user-attachments/assets/844a7df0-3272-40e7-b8c8-dd011eafe9da)
 
 # Shosen 🥋⚫
+
 
 
 Shosen é um projeto desenvolvido para incentivar e promover o conhecimento do Judô, despertando interesse em começar a praticar e treinar o esporte. Com um site interativo, o usuário pode descobrir curiosidades e ensinametos que o Judô me trouxe, além de diversas informações gerais.
@@ -8,7 +9,7 @@ Nosso sistema oferece um gráfico competitivo, onde é possível subir no rankin
 
 ## Tecnologias Utilizadas
 
-- **Frontend:** HTML, CSS eJavaScript
+- **Frontend:** HTML, CSS e JavaScript
 - **Backend:** Node.js
 - **Banco de Dados:** MySQL
 
