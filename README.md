@@ -1,4 +1,4 @@
-![Logo](https://github.com/user-attachments/assets/844a7df0-3272-40e7-b8c8-dd011eafe9da)
+<img src="https://github.com/user-attachments/assets/844a7df0-3272-40e7-b8c8-dd011eafe9da" alt="Logo" style="width: 150px; height: auto;">
 
 # Shosen 🥋⚫
 
