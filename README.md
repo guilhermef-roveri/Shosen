@@ -1,6 +1,6 @@
 <img src="https://github.com/usuario/repo/assets/logo.svg" alt="Logo">
 
-# Shosen 🎸📚
+# Shosen 🥋⚫
 
 
 Shosen é um projeto desenvolvido para incentivar e promover o conhecimento do Judô, despertando interesse em começar a praticar e treinar o esporte. Com um site interativo, o usuário pode descobrir curiosidades e ensinametos que o Judô me trouxe, além de diversas informações gerais.
