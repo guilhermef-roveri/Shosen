@@ -91,3 +91,7 @@ footer{
     justify-content: space-evenly;
     align-items: center;
 }
+
+#botaoVoltar{
+    cursor: pointer;
+}
