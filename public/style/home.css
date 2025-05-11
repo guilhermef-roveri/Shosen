@@ -43,12 +43,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: black;
 }
 
 .textoShosen{
     display: flex;
     flex-direction: column;    
     margin: 15px;
+    color: white;
 }
 
 .textoShosen h1{
@@ -59,7 +61,7 @@
 
 .textoShosen p{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 60px;
     line-height: 50px;
 
 }
@@ -68,34 +70,50 @@
     width: 500px;
     height: 500px;
     margin: 20px;
+    border-radius: 8px;
 }
 
-/* Card Triplo dos Senseis */
-.meusSenseis{
-background-color: rgba(33, 35, 34, 1);
-width: 100%;
-height: auto;
-color: white;
+.spanInfoShosen{
+    color: red;
 }
 
-.sensei{
-    width: auto;
-    height: 30%;
-   margin-top: 24px;
-   margin-bottom: 20px;
-}
-.sensei img{
-    width: 320px;
-    height: 320px;
-}
+/* Competicoes */
 
-.cardTriploSensei{
-    text-align: center;
-    width: 100%;
+.Competicoes{
+    height: 600px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    
+    justify-content: center;
+    background-color: rgba(5, 21, 20, 1);
+}
+
+.textosCompeticoes{
+    display: flex;
+    flex-direction: column;    
+    margin: 15px;
+    color: white;
+}
+
+.textosCompeticoes h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px
+}
+
+.textosCompeticoes p{
+    text-align: center;
+    margin-top: 30px;
+    line-height: 50px;
+    font-size: 16px;
+
+}
+
+.imagemCompeticao{
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+    border-radius: 8px;
+    margin-top: 40px;
 }
 
 /* Section Quiz */
@@ -107,7 +125,7 @@ color: white;
     color: white;
     display: flex;
     justify-content: space-between;
-    padding-top: 60px;
+    padding-top: 0px;
     align-items: center;
 }
 

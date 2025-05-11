@@ -1,0 +1,28 @@
+/* Card Triplo dos Senseis */
+.meusSenseis{
+    background-color: rgba(33, 35, 34, 1);
+    width: 100%;
+    height: auto;
+    color: white;
+    }
+    
+    .sensei{
+        width: auto;
+        height: 30%;
+       margin-top: 24px;
+       margin-bottom: 20px;
+    }
+    .sensei img{
+        width: 320px;
+        height: 320px;
+    }
+    
+    .cardTriploSensei{
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        
+    }
+    
