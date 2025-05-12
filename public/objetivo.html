@@ -8,40 +8,59 @@
     <title>Document</title>
 </head>
 <body>
+
+    <nav>
+        <img src="assets/Logo.png" class="LogoHeader" onclick="botaoHome()" id="botaoVoltar">
+        <ul class="links">
+            <li class="btnHistoria"><a href="historia.html">História</a></li>
+            <li>Objetivo</li>
+            <li><a href="curiosidades.html">Curiosidades</a></li>
+            <li class="btnEntrar"><a href="login.html">Entrar</a></li>
+            <li class="btnRegistro"><a href="cadastro.html">Criar nova conta</a></li>
+        </ul>
+    </nav>
+    <div class="imagemHistoria">
+        <img src="./assets/ImagemCuriosidades.jpg">
+    </div>
+
     <section class="meusSenseis">
         <h1 style="text-align: center;padding: 15px;" class="tituloSensei">Meus Senseis</h1>
         <div class="cardTriploSensei">
             <div class="sensei">
                 <img src="./assets/senseiCarlos.png">
                 <h3>Sensei 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non metus vel urna pulvinar lobortis.
-                    Vivamus tincidunt consequat mauris, sed sagittis lectus egestas id. Maecenas suscipit porta nisl
-                    eget lacinia. Maecenas quis aliquet lectus. Maecenas pharetra ligula ac tellus egestas, id bibendum
-                    eros maximus. Maecenas vehicula, lectus nec luctus faucibus, ligula arcu vulputate ligula, quis
-                    mollis urna justo a lectus. Aliquam consequat sagittis odio non suscipit. Nulla volutpat viverra
-                    orci congue venenatis.</p>
+                <p>Carlos</p>
             </div>
             <div class="sensei">
                 <img src="./assets/senseiPaulinho.png">
                 <h3>Sensei 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non metus vel urna pulvinar lobortis.
-                    Vivamus tincidunt consequat mauris, sed sagittis lectus egestas id. Maecenas suscipit porta nisl
-                    eget lacinia. Maecenas quis aliquet lectus. Maecenas pharetra ligula ac tellus egestas, id bibendum
-                    eros maximus. Maecenas vehicula, lectus nec luctus faucibus, ligula arcu vulputate ligula, quis
-                    mollis urna justo a lectus. Aliquam consequat sagittis odio non suscipit. Nulla volutpat viverra
-                    orci congue venenatis.</p>
+                <p>Paulinho</p>
             </div>
             <div class="sensei">
                 <img src="./assets/senseiReinaldo.png">
-                <h3>Sensei 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non metus vel urna pulvinar lobortis.
-                    Vivamus tincidunt consequat mauris, sed sagittis lectus egestas id. Maecenas suscipit porta nisl
-                    eget lacinia. Maecenas quis aliquet lectus. Maecenas pharetra ligula ac tellus egestas, id bibendum
-                    eros maximus. Maecenas vehicula, lectus nec luctus faucibus, ligula arcu vulputate ligula, quis
-                    mollis urna justo a lectus. Aliquam consequat sagittis odio non suscipit. Nulla volutpat viverra
-                    orci congue venenatis.</p>
+                <h3>Sensei 3</h3>
+                <p>Reinaldo</p>
             </div>
         </div>
     </section>
+
+    <footer>
+        <img src="./assets/Logo.png" style="width: 70x; height: 70px;">
+        <div class="textoFooter">
+            <p>Termos de serviço | Configurações de Cookies | Política de Privacidade</p>
+            <p>© 2025 Shosen. Todos os direitos reservados</p>
+        </div>
+        <div class="iconesFooter">
+            <img src="./assets/LogoInstagram.png">
+            <img src="./assets/LogoLinkedin.png">
+            <img src="./assets/LogoGithub.png">
+        </div>
+    </footer>
 </body>
 </html>
+
+<script>
+    function botaoHome() {
+        window.location.href = "index.html"
+    }
+</script>

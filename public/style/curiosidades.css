@@ -1,3 +1,8 @@
+body{
+  background-color: black;
+  color: white;
+}
+
 /* Imagem de Fundo principal da página */
 
   .imagemHistoria img{
@@ -5,7 +10,7 @@
     height: 750px;
   }
 
-/* Cards de Faixas  */
+/* Cards de Faixas Coloridas */
 
 .infoFaixas{
     height: 600px;
@@ -13,6 +18,7 @@
     flex-direction: row;
     justify-content: center;
     margin-bottom: 120px;
+    
 }
 
 .textoFaixas{
@@ -29,7 +35,7 @@
 
 .textoFaixas p{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 30px;
     line-height: 50px;
 
 }
@@ -38,6 +44,46 @@
     width: 500px;
     height: 500px;
     margin: 20px;
+    border-radius: 8px;
+}
+
+/* Card Dan Faixa Preta */
+
+.infoDan{
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 120px;
+  
+}
+
+.textoDan{
+  display: flex;
+  flex-direction: column;    
+  margin: 15px;
+  width: 60%;
+}
+
+.textoDan h1{
+  font-size: 50px;
+  text-align: center;
+  margin-top: 30px
+}
+
+.textoDan p{
+  text-align: center;
+  margin-top: 30px;
+  line-height: 50px;
+  font-size: 15px;
+}
+
+.imagemDan{
+  width: 600px;
+  height: 600px;
+  margin-right: 40px;
+  border-radius: 8px;
+  margin-top: 3 0px;
 }
 /* Golpes proibidos */
 .infoGolpes{
@@ -72,6 +118,7 @@
     width: 500px;
     height: 500px;
     margin: 20px;
+    border-radius: 8px;
   }
   
   /* Curiosidades Olimpíadas */
@@ -93,11 +140,29 @@
     
   }
   .sectionOlimpiada{
-    width: 30%;
-    height: 70%;
+    width: 28%;
+    height: 45%;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 16px;
+  }
+
+  .sectionOlimpiada p{
+    margin-top: 12px;
   }
 
   .imgOlimpiadas{
     width: 50%;
     height: 500px;
+    border-radius: 12px;
+  }
+
+  .tituloOlimpiadas{
+    font-size: 36px;
+    margin: 20px;
+  }
+
+  .sectionOlimpiada p{
+    line-height: 24px;
   }
