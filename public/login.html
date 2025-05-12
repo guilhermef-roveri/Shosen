@@ -28,7 +28,7 @@
             <input placeholder="Senha *" type="password" id="senha_input">
         </div>
         <div class="fieldLogin">
-            <button>Entrar</button>
+            <button onclick="entrar()">Entrar</button>
             <p style="margin-top: 12px;">Esqueceu a Senha?</p>
             <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Ainda não tem uma conta?<span style="color: red;">Cadastre-se</span></p>
         </div>
@@ -42,20 +42,20 @@
 <script>
 
 
-    function entrar() {
-        aguardar();
+function entrar() {
+        // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            // finalizarAguardar();
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            // setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -75,6 +75,7 @@
 
             if (resposta.ok) {
                 console.log(resposta);
+                
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -82,10 +83,9 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboardShosen.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -96,19 +96,21 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
         }).catch(function (erro) {
             console.log(erro);
+            alert("Login feito com sucesso! Redirecionando para a DashBoard")
         })
 
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
 
 </script>

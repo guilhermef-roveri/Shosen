@@ -45,10 +45,13 @@ nav {
     border-radius: 8px;
 }
 
-.btnHistoria{
+a{
+    text-decoration: none;
+    color: white;
     cursor: pointer;
 }
 
-.btnCuriosidades{
+.LogoHeader{
+    margin-left: 20px;
     cursor: pointer;
 }

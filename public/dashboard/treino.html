@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/elementosDash.css">
-    <link rel="stylesheet" href="style/treino.css">
+    <link rel="stylesheet" href="../style/elementosDash.css">
+    <link rel="stylesheet" href="../style/treino.css">
     <title>Document</title>
 </head>
 
 <body>
     <nav>
-        <img src="assets/Logo.png" class="LogoHeader" style="cursor: pointer; margin-left: 20px;">
+        <img src="../assets/Logo.png" class="LogoHeader" onclick="homeDashboard()">
         <ul class="links">
             <li class="btnHistoria">Treinos</li>
             <li>Dashboard</li>
@@ -21,7 +21,7 @@
         </ul>
     </nav>
     <div class="telaTreino">
-        <img src="./assets/horasJudo.png">
+        <img src="../assets/horasJudo.png">
         <div class="div_horasDeTreino">
             <h1>Monitore suas horas de treino</h1>
             <p class="textoTreino">Acompanhar suas horas de treino é essencial para melhorar a produtividade e alcançar
@@ -42,3 +42,9 @@
 </body>
 
 </html>
+
+<script>
+    function homeDashboard(){
+        window.location.href = "dashboardShosen.html"
+    }
+</script>
