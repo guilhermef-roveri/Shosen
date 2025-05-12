@@ -33,9 +33,9 @@
             </p>
             <div class="div_cardHoras">
                 <h2>Monitore suas horas de treino</h2>
-                <p>Quantas horas você treinou hoje?</p>
+                <p>Quantos minutos você treinou hoje?</p>
                 <input id="ipt_horas" placeholder="Digite as horas" type="number">
-                <button>Registrar</button>
+                <button onclick="RegistrarTreinos()">Registrar</button>
             </div>
         </div>
     </div>
@@ -44,6 +44,36 @@
 </html>
 
 <script>
+    function RegistrarTreinos(){
+        var horasTreinoVar = Number(ipt_horas.value)
+
+        fetch("/treino/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        horasTreinoServer: horasTreinoVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert("Horas informadas com sucesso!")
+          
+        } else {
+          alert("Houve um erro ao cadastrar seu treino.")
+          throw "Houve um erro ao cadastrar seu treino.";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
     function homeDashboard(){
         window.location.href = "dashboardShosen.html"
     }

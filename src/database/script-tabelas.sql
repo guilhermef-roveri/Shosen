@@ -22,3 +22,5 @@ VALUES ('Ana Silva', 'ana.silva@email.com', 'senha123'),
  ('Bruno Costa', 'bruno.costa@email.com', 'abc12345'),
  ('Carla Mendes', 'carla.mendes@email.com', 'minhasenha'),
  ('Diego Rocha', 'diego.rocha@email.com', '12345678');
+
+ 
