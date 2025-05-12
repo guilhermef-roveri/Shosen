@@ -25,7 +25,7 @@ body{
 .imgLogo{
    width: 150px;
    height: 150px;
-   margin-bottom: 30px;
+   margin-bottom: 20px;
    cursor: pointer;
 }
 
@@ -39,7 +39,7 @@ body{
 }
 
 .fieldRegistro{
-    margin-top: 12px;
+    margin-bottom: 6px;
     color: rgba(105, 111, 121, 1);
 }
 
@@ -51,7 +51,7 @@ body{
   border: 1px solid transparent;
   font-size: 24px;
   border-radius: 8px;
-  margin-bottom: 80px;
+  margin-bottom:10px;
   margin-top: 12px;
 }
 

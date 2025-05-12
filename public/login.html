@@ -18,7 +18,7 @@
         <img src="./assets/fotoLogin.png" class="pngLogin">
     </div>
     <div class="containerLogin">
-        <img src="./assets/Logo.png" class="imgLogo" onclick="Home()">
+        <img src="./assets/Logo.png" class="imgLogo" onclick="botaoHome()">
         <div class="fieldLogin">
             <p>Endereço de email</p>
             <input placeholder="Email *" id="email_input">
@@ -30,7 +30,7 @@
         <div class="fieldLogin">
             <button onclick="entrar()">Entrar</button>
             <p style="margin-top: 12px;">Esqueceu a Senha?</p>
-            <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Ainda não tem uma conta?<span style="color: red;">Cadastre-se</span></p>
+            <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Ainda não tem uma conta?<span onclick="cadastro()" style="color: red;cursor: pointer;">Cadastre-se</span></p>
         </div>
         
     </div>
@@ -112,5 +112,11 @@ function entrar() {
     // function sumirMensagem() {
     //     cardErro.style.display = "none"
     // }
+function cadastro(){
+    window.location.href = "cadastro.html"
+}
 
+function botaoHome() {
+        window.location.href = "index.html"
+    }
 </script>

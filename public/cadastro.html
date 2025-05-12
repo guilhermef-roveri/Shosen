@@ -19,7 +19,7 @@
 
   
   <div class="containerRegistro">
-    <img src="./assets/Logo.png" class="imgLogo" onclick="Home()">
+    <img src="./assets/Logo.png" class="imgLogo" onclick="botaoHome()">
     <!-- <div class="login">
       <div class="alerta_erro">
         <div class="card_erro" id="cardErro">
@@ -48,6 +48,8 @@
     </div>
     <div class="fieldRegistro">
         <button style="cursor:pointer;" onclick="cadastrar()">Entrar</button>
+        <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Já tem uma conta?<span onclick="Login()" style="color: red;cursor: pointer;">Entre</span></p>
+
     </div>
 </div>
 
@@ -192,4 +194,12 @@
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
+
+  function botaoHome() {
+        window.location.href = "index.html"
+    }
+
+    function Login(){
+      window.location.href = "login.html"
+    }
 </script>
