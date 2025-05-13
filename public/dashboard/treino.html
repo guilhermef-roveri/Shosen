@@ -46,7 +46,7 @@
 <script>
     function RegistrarTreinos(){
         var horasTreinoVar = Number(ipt_horas.value)
-
+        var idUsuario = sessionStorage.ID_USUARIO
         fetch("/treino/cadastrar", {
       method: "POST",
       headers: {
@@ -54,6 +54,7 @@
       },
       body: JSON.stringify({
         horasTreinoServer: horasTreinoVar,
+        idUsuario : idUsuario
       }),
     })
       .then(function (resposta) {
@@ -64,7 +65,6 @@
           
         } else {
           alert("Houve um erro ao cadastrar seu treino.")
-          throw "Houve um erro ao cadastrar seu treino.";
         }
       })
       .catch(function (resposta) {

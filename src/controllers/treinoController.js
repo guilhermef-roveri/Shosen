@@ -11,12 +11,13 @@ function listar(req, res) {
 
 function cadastrar(req, res) {
     var horasTreino = req.body.horasTreinoServer;
+    var idUsuario = req.body.idUsuario;
 
     if (horasTreino == undefined) {
         res.status(400).send("Seu treino está inserido errado!");
     }
 
-    treinoModel.cadastrar(horasTreino).then(function(resposta){
+    treinoModel.cadastrar(horasTreino,idUsuario).then(function(resposta){
         res.status(200).send("Treino criado com sucesso");
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
