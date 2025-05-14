@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/elementosDash.css">
     <link rel="stylesheet" href="../style/dashboardShosen.css">
+    <script src="../js/sessao.js"></script>
     <title>Document</title>
 </head>
 
@@ -16,11 +17,14 @@
             <li class="btnHistoria"><a href = "treino.html">Treinos</a></li>
             <li>Dashboard</li>
             <li><a href="telaInicioQuiz.html">Quiz</a></li>
-            <li class="btnEntrar">Olá!</li>
-            <li class="btnRegistro">Sair</li>
+            <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
+            <li class="btnRegistro" onclick="limparSessao()">Sair</li>
         </ul>
     </nav>
     
 </body>
 
 </html>
+<script>
+  n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+</script>

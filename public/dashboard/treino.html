@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/elementosDash.css">
     <link rel="stylesheet" href="../style/treino.css">
+        <script src="../js/sessao.js"></script>
     <title>Document</title>
 </head>
 
@@ -16,8 +17,8 @@
             <li class="btnHistoria">Treinos</li>
             <li><a href="dashboardShosen.html">Dashboard</li>
             <li><a href="telaInicioQuiz.html">Quiz</a></li>
-            <li>Olá!</li>
-            <li class="btnRegistro">Sair</li>
+            <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
+            <li class="btnRegistro" onclick="limparSessao()">Sair</li>
         </ul>
     </nav>
     <div class="telaTreino">
@@ -44,6 +45,7 @@
 </html>
 
 <script>
+  n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
     function RegistrarTreinos(){
         var horasTreinoVar = Number(ipt_horas.value)
         var idUsuario = sessionStorage.ID_USUARIO
