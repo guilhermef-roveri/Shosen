@@ -17,7 +17,8 @@ body{
 .headerQuiz{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 100vw;
+    height: 20%;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
@@ -131,3 +132,4 @@ margin-left: 30px;
 .questaoUnicaA{
     margin-right: 200px;
 }
+

@@ -1,44 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shosen Quiz</title>
-    <link rel="stylesheet" href="./style/quiz.css">
+    <title>Exemplo - Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="telaQuiz.css">
 </head>
-<body>
-    <div class="headerQuiz">
-        <div class="questãoAtual">1</div>
-        <div class="tituloQuiz">Shosen Quiz</div>
-        <img src="./assets/Logo.png">
-    </div>
-    <div class="perguntaAtual">
-        <h1>Que golpe é esse?</h1>
-    </div>
-<div class="imgPergunta">
-    <img src="./assets/imagensQuiz/faixasJudo.jpg" class="pergunta">
-    </div>
-
-    <div class="alternativas">
-        <div class="questaoUnica questaoUnicaA">
-            <h1 class="letraAlternativa">A</h1>
-            <h1 class="nomeGolpe">Osoto Gari</h1>
-        </div>
-        <div class="questaoUnica">
-            <h1 class="letraAlternativa">B</h1>
-            <h1 class="nomeGolpe">Morote seoi nage</h1>
-        </div>
-        <div class="questaoUnica questaoUnicaC">
-            <h1 class="letraAlternativa">C</h1>
-            <h1 class="nomeGolpe">Ippon seoi nage</h1>
-        </div>
-        <div class="questaoUnica">
-            <h1 class="letraAlternativa">D</h1>
-            <h1 class="nomeGolpe">Kouchi Gari</h1>
-        </div>
-    </div>
 
 
+<body onload="onloadEsconder()">
+    <!-- Tela inicial de boas vindas -->
+    <div class="fundoTelaQuiz" id="fundoTelaQuiz">
+        <div class="boasVindas" id="boasVindas">
+            <img src="Logo.png" onclick="homeDashboard()">
+            <h1>Bem vindo ao Shosen Quiz!</h1>
+            <h2>Coloque seus conhecimentos sobre judô à prova!</h2>
+            <p>Responda perguntas sobre golpes, curiosidades e muito mais.<br>Ao final do quiz, sua pontuação será
+                registrada em nosso Ranking.</p>
+            <h2>Desafie seus amigos e outros participantes em uma<br>competição divertida para ver quem alcança o topo!
+            </h2>
+            <button id="btnIniciarQuiz" onclick="iniciarQuiz()">Iniciar</button>
+        </div>
+    </div>
+    <!-- Tela do quiz -->
+    <div id="pontuacaoEJogo">
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
+            <!-- Numero da questao -->
+            <div id="infoQuestao" class="padding-8 headerQuiz">
+                <span id="spanNumeroDaQuestaoAtual"></span><span id="qtdQuestoes" style="display: none;"></span>
+                <!-- Titulo e imagem -->
+                <h1>Shosen Quiz</h1>
+                <img src="Logo.png">
+            </div>
+            <!-- Questão atual -->
+            <div id="perguntaDaQuestaoAtual" class="padding-8">
+                <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+
+            <img src="Logo.png" style="width: 250px; height: 250px;">
+
+
+            <div id="opcoes" class="flex-colunar padding-8">
+                <span>
+                    <h1>A</h1>
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA"/>
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span>
+                    <h1>B</h1>
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span>
+                    <h1>C</h1>
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+                <span>
+                    <h1>D</h1>
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+            </div>
+
+        </div>
+    </div>
 </body>
+
 </html>
+<script>
+    const listaDeQuestoes = [
+
+        {
+            pergunta: "Qual o nome desse golpe?",
+            alternativaA: "Osoto Gari",
+            alternativaB: "Kouchi Gari",
+            alternativaC: "Ouchi Gari",
+            alternativaD: "Kosoto Gari",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "Qual o nome do criador do Judô?",
+            alternativaA: "Jackie Chan",
+            alternativaB: "Matsuyo Maeda",
+            alternativaC: "Jigoro Kano",
+            alternativaD: "Morihei Ueshiba",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Qual o nome da vestimenta do judô?",
+            alternativaA: "Hakimono",
+            alternativaB: "Roupão",
+            alternativaC: "Kimono",
+            alternativaD: "Judogi",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Quantas medalhas olímpicas de Judô o Brasil tem?",
+            alternativaA: "30",
+            alternativaB: "28",
+            alternativaC: "26",
+            alternativaD: "24",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual o nome dessa imobilização?",
+            alternativaA: "Uchiro Kesa Gatame",
+            alternativaB: "Kesa Gatame",
+            alternativaC: "Ura Kesa Gatame",
+            alternativaD: "Tate Shio Gatame",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual o ponto máximo do judô?",
+            alternativaA: "Waza Ari",
+            alternativaB: "Ippon",
+            alternativaC: "Yuko",
+            alternativaD: "Koka",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual o nome desse golpe?",
+            alternativaA: "Ippon Seoi Nage",
+            alternativaB: "Seoi Nage",
+            alternativaC: "Morote Seoi Nage",
+            alternativaD: "Nage",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual a última faixa do judô?",
+            alternativaA: "Dourada",
+            alternativaB: "Preta",
+            alternativaC: "Marrom",
+            alternativaD: "Vermelha",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Qual o significado da palavra judô?",
+            alternativaA: "Caminho suave",
+            alternativaB: "Caminho do equilíbrio",
+            alternativaC: "Caminho da força",
+            alternativaD: "Caminho da menta",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual o significado da palavra judô?",
+            alternativaA: "Mate",
+            alternativaB: "Oss",
+            alternativaC: "Hajime",
+            alternativaD: "Rei",
+            alternativaCorreta: "alternativaD"
+        }
+
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    function onloadEsconder() {
+        document.getElementById('jogo').style.display = "none"
+        document.getElementById('pontuacaoEJogo').style.display = "none"
+    }
+
+    function iniciarQuiz() {
+        document.getElementById('jogo').style.display = "flex"
+        document.getElementById('pontuacaoEJogo').style.display = "flex"
+
+        document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('boasVindas').style.display = "none"
+        document.getElementById('fundoTelaQuiz').style.display = "none"
+
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+        desmarcarRadioButtons();
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        options.forEach((option) => {
+
+            if (option.value === respostaQuestaoAtual) {
+
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+
+                alternativaCorreta = option.labels[0].id
+
+            }
+
+        })
+        // verifica se resposta assinalada é correta
+
+        options.forEach((option) => {
+
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+
+                pontuacaoFinal++
+
+                certas++
+
+                numeroDaQuestaoAtual++
+
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+
+                const wrongLabelId = option.labels[0].id
+
+
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+
+                tentativaIncorreta++
+
+                numeroDaQuestaoAtual++
+
+            }
+
+        })
+
+    }
+
+
+
+
+    function finalizarJogo() {
+        // let textoParaMensagemFinal = null
+        // let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = (pontuacaoFinal / quantidadeDeQuestoes) * 10 
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            alert(`Você não estudou! Seus acertos: ${porcentagemFinalDeAcertos}`)
+            // textoParaMensagemFinal = "Parece que você não estudou..."
+            // classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            alert(`Você pode melhorar! Seus acertos: ${porcentagemFinalDeAcertos}`)
+            // textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            // classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            alert(`Você é muito bom! Seus acertos: ${porcentagemFinalDeAcertos}`)
+            // textoParaMensagemFinal = "Uau, parabéns!"
+            // classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        // textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+
+
+        // document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        // document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
+        // document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+
+        document.getElementById('jogo').classList.add("text-new-gray")
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+
+    }
+
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function desmarcarRadioButtons() {
+    const options = document.getElementsByName("option");
+    for (let i = 0; i < options.length; i++) {
+        options[i].checked = false;
+    }
+}
+
+</script>
