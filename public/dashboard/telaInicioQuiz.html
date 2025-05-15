@@ -336,7 +336,37 @@
             // classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        // textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        
+        var idUsuario = sessionStorage.ID_USUARIO
+        fetch("/quiz/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        acertos: porcentagemFinalDeAcertos,
+        idUsuario : idUsuario
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert("Dados inseridos com sucesso!")
+         window.location.href = "dashboardShosen.html"
+
+          
+        } else {
+          alert("Erro ao enviar seus dados")
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+
+     // textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         // document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
@@ -349,7 +379,7 @@
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
         window.location.href = "dashboardShosen.html"
-    }
+  }
 
 
     function habilitarAlternativas(trueOrFalse) {
