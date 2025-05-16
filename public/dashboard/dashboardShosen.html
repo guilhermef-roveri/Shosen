@@ -7,24 +7,73 @@
     <link rel="stylesheet" href="../style/elementosDash.css">
     <link rel="stylesheet" href="../style/dashboardShosen.css">
     <script src="../js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <nav>
+    <nav class="header">
         <img src="../assets/Logo.png" class="LogoHeader">
         <ul class="links">
-            <li class="btnHistoria"><a href = "treino.html">Treinos</a></li>
+            <li class="btnHistoria"><a href="treino.html">Treinos</a></li>
             <li>Dashboard</li>
             <li><a href="telaInicioQuiz.html">Quiz</a></li>
             <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
             <li class="btnRegistro" onclick="limparSessao()">Sair</li>
         </ul>
     </nav>
-    
+    <div class="div_mediaHoras">
+        <div class="dadosUsuarios">
+            <h3>Média de acertos(Usuário)</h3>
+            <p>12</p>
+        </div>
+        <div class="dadosUsuarios"><h3>Média de acertos(Usuários)</h3>
+            <p>12</p></div>
+        <div class="dadosUsuarios"><h3>Acertos do usuário</h3>
+            <p>12</p></div>
+    </div>
+    <div class="dadosGraficos">
+        <div id="graficoUm">
+            <h1>Ranking semanal de treinos</h1>
+            <canvas id="myChartBar"></canvas>
+        </div>
+
+        <div class="dadosUsuarios" id="dadosUsuarioTabela">
+            Acertos do usuário
+        </canvas>
+        </div>
+
+    </div>
+
+
 </body>
 
 </html>
 <script>
-  n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+    n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+
+    const ctx = document.getElementById('myChartBar');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Guilherme', 'Felipe', 'Kalline', 'Artur', 'Miguel', 'Rafa', 'João'],
+            datasets: [{
+                label: '    ',
+                data: [6, 22, 30, 12, 6, 9, 1],
+                backgroundColor: 'rgba(169, 15, 15, 1)',
+                borderColor: 'white',
+                borderWidth: 1
+            },
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
 </script>
