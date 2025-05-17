@@ -1,16 +1,13 @@
-CREATE DATABASE Shosen;
+CREATE DATABASE IF NOT EXISTS Shosen;
 
 use Shosen;
-
-CREATE USER teste identified by 'teste@1234';
-
-GRANT ALL PRIVILEGES ON Shosen.* to teste;
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50),
 email VARCHAR(60),
-senha VARCHAR(25)
+senha VARCHAR(25),
+UNIQUE INDEX index_email(email)
 );
 
 CREATE TABLE treino(
@@ -31,7 +28,7 @@ INSERT INTO treino (fkUsuario, dia, tempoTreino)
 VALUES (1, '2025-05-10', 1),
  (2, '2025-05-11', 2),
  (3, '2025-05-12', 3);
-SELECT * FROM usuario;
+SELECT * FROM usuario;	
 
 SELECT * FROM treino;
 
@@ -46,4 +43,9 @@ dia DATE,
 CONSTRAINT fkQuiz FOREIGN KEY(fkUsuario) references usuario(idUsuario),
 PRIMARY KEY(idResultado,fkUsuario)
 );
+
+SELECT * FROM shosen.acertosQuiz;
+
+SELECT * FROM treino;
+
 

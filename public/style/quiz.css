@@ -159,11 +159,12 @@ margin-right: 30px;
 }
 
 #btnProx{
-     width: 200px;
+     width: 50%;
     height: 40px;
     background-color: transparent;
     color: white;
     border: 1px solid white;
+    background-color: rgba(169, 15, 15, 1);
     border-radius: 12px;
     margin: 20px;
     cursor: pointer;
