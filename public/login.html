@@ -9,9 +9,11 @@
     <title>Login</title>
 
     <script src="./js/sessao.js"></script>
-      <script src="./js/botoes.js"></script>
+    <script src="./js/botoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
+
+
 </head>
 
 <body>
@@ -31,9 +33,10 @@
         <div class="fieldLogin">
             <button onclick="entrar()">Entrar</button>
             <p style="margin-top: 12px;">Esqueceu a Senha?</p>
-            <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Ainda não tem uma conta?<span onclick="cadastro()" style="color: red;cursor: pointer;">Cadastre-se</span></p>
+            <p style="color: rgba(105, 111, 121, 1);" class="textoRegistro">Ainda não tem uma conta?<span
+                    onclick="cadastro()" style="color: red;cursor: pointer;">Cadastre-se</span></p>
         </div>
-        
+
     </div>
 
 </body>
@@ -43,21 +46,24 @@
 <script>
 
 
-function entrar() {
-        // aguardar();
+    function entrar() {
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            // finalizarAguardar();
-            return false;
+            Swal.fire({
+                position: "bottom-start",
+                icon: "error",
+                title: "Campo nulo!",
+                showConfirmButton: false,
+                timer: 2500,
+                background: "#111",
+                color: "#f1f1f1",
+            });
+            return
         }
-        else {
-            // setInterval(sumirMensagem, 5000)
-        }
+
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -76,7 +82,7 @@ function entrar() {
 
             if (resposta.ok) {
                 console.log(resposta);
-                
+
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -85,15 +91,32 @@ function entrar() {
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
 
+                    Swal.fire({
+                        position: "bottom-start",
+                        icon: "success",
+                        title: "Login realizado com sucesso!",
+                        showConfirmButton: false,
+                        timer: 2500,
+                        background: "#111",
+                        color: "#f1f1f1",
+                    });
+
                     setTimeout(function () {
                         window.location = "./dashboard/dashboardShosen.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 3500); // apenas para exibir o loading
 
                 });
 
             } else {
-                alert("Houve um erro ao realizar seu login");
-                console.log("Houve um erro ao tentar realizar o login!");
+                Swal.fire({
+                    position: "bottom-start",
+                    icon: "error",
+                    title: "Erro de login!",
+                    showConfirmButton: false,
+                    timer: 3500,
+                    background: "#111",
+                    color: "#f1f1f1",
+                });
 
                 resposta.text().then(texto => {
                     console.error(texto);

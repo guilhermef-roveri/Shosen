@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações com texto</title>
+    <input id="ipt_texto">
+    <div id="exibir"></div>
+    <button onclick="validar()">Operações com Texto</button>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function validar(){
+        var textoOriginal = ipt_texto.value
+        exibir.innerHTML = `Texto original: ${textoOriginal}`
+
+        var tamanhoTexto = textoOriginal.length // Verifica o tamanho do texto
+
+        if(tamanhoTexto >= 8 ){
+            exibir.innerHTML = `O texto possui >= 8 caracteres`
+        }else{
+            exibir.innerHTML = `O texto não possui 8 caracteres`
+        }
+
+        var terminaCom = textoOriginal.endsWith(".com") // Se termina com tal coisa
+
+        exibir.innerHTML = `Termina com .com? ${terminaCom}<br>`
+
+        var comecaGuizo = textoOriginal.startsWith("Guizo")
+
+        exibir.innerHTML += `Começa com Guizo? ${comecaGuizo}<br>`
+
+        var primeiraLetra = textoOriginal[0]; // Indice 0 é sempre a primeira letra.
+
+        exibir.innerHTML += `${primeiraLetra}`
+
+        var TerceiraLetra = textoOriginal[2] // Selecionar um indice de uma letra
+
+        exibir.innerHTML += `${TerceiraLetra}<br>`
+
+        var ultimaLetra = textoOriginal[tamanhoTexto - 1]; // Ver pelo indice
+
+        exibir.innerHTML += ` Ultima letra: ${ultimaLetra}<br>`
+    
+        var contemArrobe = textoOriginal.indexOf("@") // Mostra em qual casa e índice está uma certa letra
+
+        exibir.innerHTML += `Tem arrobe ${contemArrobe}<br>`
+
+        var temArroba = contemArrobe >= 0
+
+        exibir.innerHTML += `Tem arrobe ${temArroba}<br>`
+        
+        var indicePontoCom = textoOriginal.indexOf(".com")
+        var arrobaAntesCom = contemArrobe < indicePontoCom;
+        exibir.innerHTML += `Tá certo isso?${arrobaAntesCom}<br>`
+
+
+        var letrasMinusculas = textoOriginal.toLowerCase(); // Transformar em lower as letras, upper em maiuscula
+        var letrasMaisuculas = textoOriginal.toUpperCase();
+
+        exibir.innerHTML += `Letras minusculas : ${letrasMinusculas},<br> Letras maiusculas: ${letrasMaisuculas}<br>`
+
+        var subtexto = textoOriginal.substring(2,4) // Colocar um indice que eu queira começar
+
+        exibir.innerHTML += `Indices selecionados: ${subtexto}<br>`
+
+        var primeiraLetraMaiuscula = textoOriginal[0].toUpperCase();
+        var textoComLetraArrumada = textoOriginal[0].toUpperCase() + textoOriginal.substring(1).toLowerCase();
+
+        exibir.innerHTML += `${primeiraLetraMaiuscula}`;
+
+        var textoSemEspaco = textoOriginal.replace(" ","");
+
+        exibir.innerHTML += `Mensagem sem 1 espaco: ${textoSemEspaco}`
+
+        var textoSemNenhumEspaco = textoOriginal.replaceAll(" ", "@"); // Coloquei um @ em todos os espaços que o texto tem
+
+
+        exibir.innerHTML += `Texto sem nenhum espaco ${textoSemNenhumEspaco}`
+
+        //Ver sobre regex em JS
+    }
+</script>

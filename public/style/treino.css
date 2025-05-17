@@ -44,6 +44,7 @@ text-align: center;
     background-color: rgba(19, 23, 21, 1);
     padding: 16px;
     justify-content: space-around;
+    border-radius: 12px;
 }
 
 .div_cardHoras h2{
