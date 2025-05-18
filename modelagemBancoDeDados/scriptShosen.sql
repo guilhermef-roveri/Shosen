@@ -48,4 +48,3 @@ SELECT * FROM shosen.acertosQuiz;
 
 SELECT * FROM treino;
 
-

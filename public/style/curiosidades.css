@@ -3,12 +3,53 @@ body{
   color: white;
 }
 
-/* Imagem de Fundo principal da página */
 
-  .imagemHistoria img{
+/* Imagem de Fundo principal da página */
+.imagemFundoCuriosidades {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
     width: 100%;
-    height: 750px;
+    height: 100vh;
+    /* filter: blur(1px); */
+}
+
+.imagemFundoCuriosidades::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("../assets/imagemCuriosidade.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(5px);
+
+}
+
+.textoCuriosidades{
+text-align: center;
+width: 70%;
+z-index: 2;
+}
+
+.textoCuriosidades h1{
+  font-size: 65px;
+    margin: 20px;
+    color: #ffffff ;
+    text-shadow: 3px 2px 2px black;
+}
+
+.textoCuriosidades p{
+  font-size: 20px;
+    margin: 20px;
+    color: white ;
+    line-height: 70px;
+    text-shadow: 2px 1px 2px black;
+    -webkit-text-stroke: 0.3px black;
   }
+
 
 /* Cards de Faixas Coloridas */
 
@@ -30,18 +71,18 @@ body{
 .textoFaixas h1{
     font-size: 50px;
     text-align: center;
-    margin-top: 30px
+    margin-top: 50px
 }
 
 .textoFaixas p{
     text-align: center;
     margin-top: 30px;
-    line-height: 50px;
+    line-height: 40px;
 
 }
 
 .imagensFaixas{
-    width: 500px;
+    width: 750px;
     height: 500px;
     margin: 20px;
     border-radius: 8px;
@@ -74,13 +115,13 @@ body{
 .textoDan p{
   text-align: center;
   margin-top: 30px;
-  line-height: 50px;
+  line-height: 40px;
   font-size: 15px;
 }
 
 .imagemDan{
   width: 600px;
-  height: 600px;
+  height: 550px;
   margin-right: 40px;
   border-radius: 8px;
   margin-top: 3 0px;
@@ -104,13 +145,13 @@ body{
   .textoGolpes h1{
     font-size: 50px;
     text-align: center;
-    margin-top: 30px
+    margin-top: 50px
   }
   
   .textoGolpes p{
     text-align: center;
-    margin-top: 100px;
-    line-height: 50px;
+    margin-top: 70px;
+    line-height: 40px;
   
   }
   
@@ -124,28 +165,29 @@ body{
   /* Curiosidades Olimpíadas */
   .curiosidadesOlimpiadas{
     width: 100%;
-    height: 1000px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .infoOlimpiadas{
     width: 100%;
-    height: 60%;
+    height: 95%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     text-align: center;
     
   }
   .sectionOlimpiada{
     width: 28%;
-    height: 45%;
+    height: 55%;
     padding: 20px;
     border: 1px solid white;
     border-radius: 8px;
     margin: 16px;
+    background-color: white;
+    color: black;
   }
 
   .sectionOlimpiada p{
@@ -165,4 +207,8 @@ body{
 
   .sectionOlimpiada p{
     line-height: 24px;
+  }
+
+  .infoOlimpiadas div:hover{
+    transform: scale(1.05);
   }
