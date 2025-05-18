@@ -73,6 +73,7 @@ footer{
     justify-content: space-between;
     padding-top: 20px;
     align-items: center;
+    height: 70px;
 }
 
 .textoFooter{
