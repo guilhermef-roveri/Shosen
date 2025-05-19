@@ -8,6 +8,17 @@ function cadastrar(horasTreino, idUsuario){
     return database.executar(instrucao)
 }
 
+function mediaTreinoUsuario(){
+    
+}
+
+function mediaTreinoGeral(){
+
+}
+
+function totalTreinado(){
+
+}
 module.exports = {
     cadastrar
 };

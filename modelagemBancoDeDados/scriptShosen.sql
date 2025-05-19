@@ -30,6 +30,7 @@ VALUES (1, '2025-05-10', 1),
  (3, '2025-05-12', 3);
 SELECT * FROM usuario;	
 
+
 SELECT * FROM treino;
 
 INSERT INTO treino(fkUsuario,dia,tempoTreino) VALUES(1,Curdate(),3);
@@ -44,7 +45,46 @@ CONSTRAINT fkQuiz FOREIGN KEY(fkUsuario) references usuario(idUsuario),
 PRIMARY KEY(idResultado,fkUsuario)
 );
 
-SELECT * FROM shosen.acertosQuiz;
+
+INSERT INTO usuario (nome, email, senha) VALUES 
+('Ana Silva', 'ana.silva@example.com', 'senha123'),
+('Bruno Costa', 'bruno.costa@example.com', 'abc456'),
+('Carla Mendes', 'carla.mendes@example.com', 'carla789'),
+('Daniel Souza', 'daniel.souza@example.com', 'daniel321'),
+('Eduarda Lima', 'eduarda.lima@example.com', 'edu123'),
+('Felipe Rocha', 'felipe.rocha@example.com', 'felipe456'),
+('Gabriela Teixeira', 'gabriela.teixeira@example.com', 'gabi789'),
+('Henrique Alves', 'henrique.alves@example.com', 'henrique321');
+
+INSERT INTO treino (fkUsuario, dia, tempoTreino) VALUES 
+(1, '2025-05-10', 45),
+(2, '2025-05-11', 30),
+(3, '2025-05-12', 60),
+(4, '2025-05-13', 40),
+(5, '2025-05-14', 35),
+(6, '2025-05-15', 50),
+(7, '2025-05-16', 55),
+(8, '2025-05-17', 25);
+
+
+
+INSERT INTO acertosQuiz (fkUsuario, acertos, dia) VALUES
+(1, 8, '2025-05-10'),
+(2, 6, '2025-05-11'),
+(3, 9, '2025-05-12'),
+(4, 7, '2025-05-13'),
+(5, 5, '2025-05-14'),
+(6, 10, '2025-05-15'),
+(7, 4, '2025-05-16'),
+(8, 6, '2025-05-17');
+
+SELECT SUM(tempoTreino) as TempoTreinado FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario WHERE fkUsuario = 8; -- Horas de treino totais do usuário
+
+SELECT round(AVG(tempoTreino),2) as MediaTreinoGeral FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario; -- Media de Treino Geral
+
+SELECT round(AVG(tempoTreino),2) as MediaTreinoUsuario FROM treino -- Horas de treino do usuário
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3;
 
 SELECT * FROM treino;
-

@@ -54,3 +54,12 @@ a{
     margin-left: 20px;
     cursor: pointer;
 }
+
+.botaoSelecionado{
+  font-weight: bold;
+  color:rgb(255, 255, 255);
+  border: 2px solid white;
+  padding: 18px;
+  border-radius: 12px;
+  background-color: rgb(27, 26, 26);
+}
