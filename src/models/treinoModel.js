@@ -15,8 +15,12 @@ function mediaTreino(idUsuario){
     return database.executar(instrucao)
 }
 
-function mediaTreinoGeral(){
+function mediaGeral(){
+    var instrucao = `
+SELECT round(AVG(tempoTreino)) as MediaTreinoGeral FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario `
 
+return database.executar(instrucao)
 }
 
 function horasTotais(idUsuario){
@@ -29,5 +33,6 @@ function horasTotais(idUsuario){
 module.exports = {
     cadastrar,
     horasTotais,
-    mediaTreino
+    mediaTreino,
+    mediaGeral
 }

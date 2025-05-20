@@ -79,12 +79,14 @@ INSERT INTO acertosQuiz (fkUsuario, acertos, dia) VALUES
 (8, 6, '2025-05-17');
 
 SELECT SUM(tempoTreino) as TempoTreinado FROM treino
-INNER JOIN usuario on idUsuario = fkUsuario WHERE fkUsuario = 8; -- Horas de treino totais do usuário
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3; -- Horas de treino totais do usuário
 
-SELECT round(AVG(tempoTreino),2) as MediaTreinoGeral FROM treino
+SELECT round(AVG(tempoTreino)) as MediaTreinoGeral FROM treino
 INNER JOIN usuario on idUsuario = fkUsuario; -- Media de Treino Geral
 
-SELECT round(AVG(tempoTreino),2) as MediaTreinoUsuario FROM treino -- Horas de treino do usuário
-INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3;
+ SELECT round(AVG(tempoTreino)) as MediaTreinoUsuario FROM treino 
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3; -- Média de treino do usuário
+
+-- Horas de treino do usuário
 
 SELECT * FROM treino;

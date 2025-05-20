@@ -44,9 +44,18 @@ function mediaUsuario(req,res){
     })
 }
 
+function mediaGeral(req,res){
+    treinoModel.mediaGeral().then(function (resposta){
+        res.status(200).json(resposta);
+    }).catch(function (erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
     horasTotais,
-    mediaUsuario
+    mediaUsuario,
+    mediaGeral
 }

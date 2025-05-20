@@ -24,11 +24,11 @@
     </nav>
     <div class="div_mediaHoras">
         <div class="dadosUsuarios">
-            <h3>Sua média de treinos</h3>
+            <h3>Sua média de treinos diários</h3>
             <p id="media_Usuario"></p>
         </div>
         <div class="dadosUsuarios"><h3>Média de treinos(Usuários)</h3>
-            <p></p></div>
+            <p id="media_geral"></p></div>
         <div class="dadosUsuarios"><h3>Seu total de minutos</h3>
             <p id="dado_TotalDeHoras"></p></div>
     </div>
@@ -54,6 +54,7 @@
     window.onload = function(){
         buscarHorasTreinadas();
         buscarMediaUsuario();
+        buscarMediaGeral();
     }
     n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
     
@@ -132,6 +133,35 @@ function buscarMediaUsuario() {
         // Retorna como um array, vou pegar no exato local do array.
       } else {
         document.getElementById('media_Usuario').innerHTML = "0 minutos";
+      }
+    })
+    .catch(erro => {
+      console.error("Erro na requisição:", erro);
+    });
+}
+
+function buscarMediaGeral() {
+  const idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/treino/mediaGeral`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error("Nenhum dado encontrado");
+      }
+    })
+    .then(resposta => {
+      if (resposta && resposta.length > 0) {
+        document.getElementById('media_geral').innerHTML = resposta[0].MediaTreinoGeral + " minutos";
+        // Retorna como um array, vou pegar no exato local do array.
+      } else {
+        document.getElementById('media_geral').innerHTML = "0 minutos";
       }
     })
     .catch(erro => {

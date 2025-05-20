@@ -21,4 +21,8 @@ treinoController.mediaUsuario(req,res);
 });
 // Mesma coisa aqui
 
+router.get("/mediaGeral", function(req,res){
+  treinoController.mediaGeral(req,res);
+})
+
 module.exports = router;
