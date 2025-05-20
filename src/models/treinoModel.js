@@ -8,17 +8,26 @@ function cadastrar(horasTreino, idUsuario){
     return database.executar(instrucao)
 }
 
-function mediaTreinoUsuario(){
-    
+function mediaTreino(idUsuario){
+    var instrucao = `
+     SELECT round(AVG(tempoTreino)) as MediaTreinoUsuario FROM treino 
+    INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}';`;
+    return database.executar(instrucao)
 }
 
 function mediaTreinoGeral(){
 
 }
 
-function totalTreinado(){
-
-}
+function horasTotais(idUsuario){
+    var instrucao = `
+    SELECT SUM(tempoTreino) as TempoTreinado FROM treino
+    INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}';
+    `;
+    return database.executar(instrucao)
+}   
 module.exports = {
-    cadastrar
-};
+    cadastrar,
+    horasTotais,
+    mediaTreino
+}

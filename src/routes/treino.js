@@ -11,4 +11,14 @@ router.post("/listar", function (req, res) {
     treinoController.autenticar(req, res);
 });
 
+router.get("/horasTotaisUsuario/:idUsuario", function(req, res) {
+  treinoController.horasTotais(req, res);
+});
+// Vou chamar direto as horas totais pelo Usuario
+
+router.get("/mediaUsuario/:idUsuario", function(req,res){
+treinoController.mediaUsuario(req,res);
+});
+// Mesma coisa aqui
+
 module.exports = router;

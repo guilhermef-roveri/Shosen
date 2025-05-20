@@ -24,13 +24,13 @@
     </nav>
     <div class="div_mediaHoras">
         <div class="dadosUsuarios">
-            <h3>Média de acertos(Usuário)</h3>
-            <p>12</p>
+            <h3>Sua média de treinos</h3>
+            <p id="media_Usuario"></p>
         </div>
-        <div class="dadosUsuarios"><h3>Média de acertos(Usuários)</h3>
-            <p>12</p></div>
-        <div class="dadosUsuarios"><h3>Acertos do usuário</h3>
-            <p>12</p></div>
+        <div class="dadosUsuarios"><h3>Média de treinos(Usuários)</h3>
+            <p></p></div>
+        <div class="dadosUsuarios"><h3>Seu total de minutos</h3>
+            <p id="dado_TotalDeHoras"></p></div>
     </div>
     <div class="dadosGraficos">
         <div id="graficoUm">
@@ -50,8 +50,13 @@
 
 </html>
 <script>
-    n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
 
+    window.onload = function(){
+        buscarHorasTreinadas();
+        buscarMediaUsuario();
+    }
+    n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+    
     const ctx = document.getElementById('myChartBar');
 
     new Chart(ctx, {
@@ -75,5 +80,63 @@
             }
         }
     });
+
+    function buscarHorasTreinadas() {
+  const idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/treino/horasTotaisUsuario/${idUsuario}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error("Nenhum dado encontrado");
+      }
+    })
+    .then(resposta => {
+      if (resposta && resposta.length > 0) {
+        document.getElementById('dado_TotalDeHoras').innerHTML = resposta[0].TempoTreinado + " minutos";
+        // Retorna como um array, vou pegar no exato local do array.
+      } else {
+        document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
+      }
+    })
+    .catch(erro => {
+      console.error("Erro na requisição:", erro);
+    });
+}
+
+function buscarMediaUsuario() {
+  const idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/treino/mediaUsuario/${idUsuario}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error("Nenhum dado encontrado");
+      }
+    })
+    .then(resposta => {
+      if (resposta && resposta.length > 0) {
+        document.getElementById('media_Usuario').innerHTML = resposta[0].MediaTreinoUsuario + " minutos";
+        // Retorna como um array, vou pegar no exato local do array.
+      } else {
+        document.getElementById('media_Usuario').innerHTML = "0 minutos";
+      }
+    })
+    .catch(erro => {
+      console.error("Erro na requisição:", erro);
+    });
+}
 
 </script>
