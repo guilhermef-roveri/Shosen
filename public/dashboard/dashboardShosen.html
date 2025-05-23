@@ -1,49 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/elementosDash.css">
-    <link rel="stylesheet" href="../style/dashboardShosen.css">
-    <script src="../js/sessao.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/elementosDash.css">
+  <link rel="stylesheet" href="../style/dashboardShosen.css">
+  <script src="../js/sessao.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dashboard</title>
 </head>
 
 <body>
-    <nav class="header">
-        <img src="../assets/Logo.png" class="LogoHeader">
-        <ul class="links">
-            <li class="btnHistoria"><a href="treino.html">Treinos</a></li>
-            <li class="botaoSelecionado">Dashboard</li>
-            <li><a href="telaInicioQuiz.html">Quiz</a></li>
-            <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
-            <li class="btnRegistro" onclick="limparSessao()">Sair</li>
-        </ul>
-    </nav>
-    <div class="div_mediaHoras">
-        <div class="dadosUsuarios">
-            <h3>Sua média de treinos diários</h3>
-            <p id="media_Usuario"></p>
-        </div>
-        <div class="dadosUsuarios"><h3>Média de treinos(Usuários)</h3>
-            <p id="media_geral"></p></div>
-        <div class="dadosUsuarios"><h3>Seu total de minutos</h3>
-            <p id="dado_TotalDeHoras"></p></div>
+  <nav class="header">
+    <img src="../assets/Logo.png" class="LogoHeader">
+    <ul class="links">
+      <li class="btnHistoria"><a href="treino.html">Treinos</a></li>
+      <li class="botaoSelecionado">Dashboard</li>
+      <li><a href="telaInicioQuiz.html">Quiz</a></li>
+      <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
+      <li class="btnRegistro" onclick="limparSessao()">Sair</li>
+    </ul>
+  </nav>
+  <div class="div_mediaHoras">
+    <div class="dadosUsuarios">
+      <h3>Sua média de treinos diários</h3>
+      <p id="media_Usuario"></p>
     </div>
-    <div class="dadosGraficos">
-        <div id="graficoUm">
-            <h1>Ranking semanal de treinos</h1>
-            <canvas id="myChartBar"></canvas>
-        </div>
-
-        <div class="dadosUsuarios" id="dadosUsuarioTabela">
-            Acertos do usuário
-        </canvas>
-        </div>
-
+    <div class="dadosUsuarios">
+      <h3>Média de treinos(Usuários)</h3>
+      <p id="media_geral"></p>
     </div>
+    <div class="dadosUsuarios">
+      <h3>Seu total de minutos</h3>
+      <p id="dado_TotalDeHoras"></p>
+    </div>
+  </div>
+  <div class="dadosGraficos">
+    <div id="graficoUm">
+      <h1>Ranking semanal de treinos</h1>
+      <canvas id="myChartBar"></canvas>
+    </div>
+
+    <div class="dadosUsuarios" id="dadosUsuarioTabela">
+      <div>
+        <h1 style="margin-bottom: 15px;">Tempo de Treino Mensal</h1>
+      </div>
+      <div class="rankingMensal">
+        <p>1º - Guilherme Roveri</p>
+        <p>50 horas</p>
+      </div>
+      <div class="rankingMensal">
+        <p>2º - Nicolas Barbosa</p>
+        <p>45 horas</p>
+      </div>
+      <div class="rankingMensal">
+        <p>3º - João Carlos</p>
+        <p>30 horas</p>
+      </div>
+      <div class="rankingMensal">
+        <p>4º - Felipe Lima</p>
+        <p>20 horas</p>
+      </div>
+      <div class="rankingMensal">
+        <p>5º - Kalline Porfírio</p>
+        <p>5 horas</p>
+      </div>
+      </canvas>
+    </div>
+
+  </div>
 
 
 </body>
@@ -51,22 +76,132 @@
 </html>
 <script>
 
-    window.onload = function(){
-        buscarHorasTreinadas();
-        buscarMediaUsuario();
-        buscarMediaGeral();
-    }
-    n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
-    
-    const ctx = document.getElementById('myChartBar');
+  window.onload = function () {
+    buscarHorasTreinadas();
+    buscarMediaUsuario();
+    buscarMediaGeral();
+    horarioGrafico();
+  }
+  n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
 
-    new Chart(ctx, {
+  const ctx = document.getElementById('myChartBar');
+
+
+
+  function buscarHorasTreinadas() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/treino/horasTotaisUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0) {
+          document.getElementById('dado_TotalDeHoras').innerHTML = resposta[0].TempoTreinado + " minutos";
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
+  function buscarMediaUsuario() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/treino/mediaUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0) {
+          document.getElementById('media_Usuario').innerHTML = resposta[0].MediaTreinoUsuario + " minutos";
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('media_Usuario').innerHTML = "0 minutos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
+  function buscarMediaGeral() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/treino/mediaGeral`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0) {
+          document.getElementById('media_geral').innerHTML = resposta[0].MediaTreinoGeral + " minutos";
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('media_geral').innerHTML = "0 minutos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
+  function horarioGrafico() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/treino/horaGrafico/${idUsuario}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+
+      .then(data => {
+        if (data.length === 0) {
+          alert("Não há dados encontrados")
+          return
+        }
+        const horas = data.map(item => item.tempoTreino)
+const dia = data.map(item => {
+  const dataObj = new Date(item.dia);
+  return dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+});
+
+        new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Guilherme', 'Felipe', 'Mygo', 'Artur', 'Miguel', 'Rafa', 'João'],
+            labels: dia,
             datasets: [{
-                label: '    ',
-                data: [6, 22, 30, 12, 6, 9, 1],
+                label: 'Minutos',
+                data: horas,
                 backgroundColor: 'rgba(169, 15, 15, 1)',
                 borderColor: 'white',
                 borderWidth: 1
@@ -81,92 +216,6 @@
             }
         }
     });
-
-    function buscarHorasTreinadas() {
-  const idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch(`/treino/horasTotaisUsuario/${idUsuario}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Nenhum dado encontrado");
-      }
-    })
-    .then(resposta => {
-      if (resposta && resposta.length > 0) {
-        document.getElementById('dado_TotalDeHoras').innerHTML = resposta[0].TempoTreinado + " minutos";
-        // Retorna como um array, vou pegar no exato local do array.
-      } else {
-        document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
-      }
-    })
-    .catch(erro => {
-      console.error("Erro na requisição:", erro);
-    });
-}
-
-function buscarMediaUsuario() {
-  const idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch(`/treino/mediaUsuario/${idUsuario}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Nenhum dado encontrado");
-      }
-    })
-    .then(resposta => {
-      if (resposta && resposta.length > 0) {
-        document.getElementById('media_Usuario').innerHTML = resposta[0].MediaTreinoUsuario + " minutos";
-        // Retorna como um array, vou pegar no exato local do array.
-      } else {
-        document.getElementById('media_Usuario').innerHTML = "0 minutos";
-      }
-    })
-    .catch(erro => {
-      console.error("Erro na requisição:", erro);
-    });
-}
-
-function buscarMediaGeral() {
-  const idUsuario = sessionStorage.ID_USUARIO;
-
-  fetch(`/treino/mediaGeral`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Nenhum dado encontrado");
-      }
-    })
-    .then(resposta => {
-      if (resposta && resposta.length > 0) {
-        document.getElementById('media_geral').innerHTML = resposta[0].MediaTreinoGeral + " minutos";
-        // Retorna como um array, vou pegar no exato local do array.
-      } else {
-        document.getElementById('media_geral').innerHTML = "0 minutos";
-      }
-    })
-    .catch(erro => {
-      console.error("Erro na requisição:", erro);
-    });
-}
-
+      })
+  }
 </script>

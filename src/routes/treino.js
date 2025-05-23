@@ -25,4 +25,8 @@ router.get("/mediaGeral", function(req,res){
   treinoController.mediaGeral(req,res);
 })
 
+router.get("/horaGrafico/:idUsuario", function(req,res){
+treinoController.horaGrafico(req,res);
+})
+
 module.exports = router;

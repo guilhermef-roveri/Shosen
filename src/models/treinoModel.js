@@ -30,9 +30,21 @@ function horasTotais(idUsuario){
     `;
     return database.executar(instrucao)
 }   
+
+
+function horaGrafico(idUsuario){
+    var instrucao = `SELECT * 
+    FROM treino
+    INNER JOIN usuario on idUsuario = fkUsuario
+    WHERE idUsuario = '${idUsuario}';`
+
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     horasTotais,
     mediaTreino,
-    mediaGeral
+    mediaGeral,
+    horaGrafico
 }

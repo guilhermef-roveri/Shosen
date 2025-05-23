@@ -52,10 +52,20 @@ function mediaGeral(req,res){
     })
 }
 
+function horaGrafico(req,res){
+    var idUsuario = req.params.idUsuario;
+    treinoModel.horaGrafico(idUsuario).then(function (resposta){
+        res.status(200).json(resposta);
+    }).catch(function (erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
     horasTotais,
     mediaUsuario,
-    mediaGeral
+    mediaGeral,
+    horaGrafico
 }
