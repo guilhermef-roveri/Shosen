@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
+      <link rel="stylesheet" href="../style/elementosDash.css">
+      <link rel="stylesheet" href="../style/dashboardQuiz.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="header">
+    <img src="../assets/Logo.png" class="LogoHeader">
+    <ul class="links">
+      <li class="btnHistoria"><a href="treino.html">Treinos</a></li>
+      <li><a href="dashboardShosen.html">Dashboard</li>
+      <li class="botaoSelecionado"> <a href="dashboardQuiz.html">Dashboard Quiz</a></li>
+      <li><a href="telaInicioQuiz.html">Quiz</a></li>
+      <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
+      <li class="btnRegistro" onclick="limparSessao()">Sair</li>
+    </ul>
+  </nav>
+
+  
+</body>
+</html>
+<script>
+n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+
+</script>

@@ -1,0 +1,11 @@
+body{
+background-image: url("../assets/wallpaperDash.jpg");
+ background-size: cover;
+background-repeat: no-repeat;
+width: 100%;
+height: 100%;
+background-position: center;}
+
+.header{
+    margin-bottom: 20px;
+}
