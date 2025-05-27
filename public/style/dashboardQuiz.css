@@ -1,11 +1,71 @@
+
 body{
-background-image: url("../assets/wallpaperDash.jpg");
+background-image: url("../assets/sobreNos.png");
  background-size: cover;
 background-repeat: no-repeat;
-width: 100%;
-height: 100%;
-background-position: center;}
+background-position: center;
+height: 100vh;
+}
 
-.header{
-    margin-bottom: 20px;
+.divDadosQuiz{
+    display: flex;
+    flex-direction: row;
+}
+
+.containerUsuario{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.dadosUsuario{
+    width: 350px;
+    height: 230px;
+    background-color: rgba(5, 21, 20, 1);
+    border-radius: 12px;
+    border: 2px solid white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    opacity: 0.95;
+}
+
+.dicas{
+     width: 70%;
+    height: 80vh;
+    background-color: rgba(5, 21, 20, 1);
+    border-radius: 12px;
+    border: 2px solid white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    opacity: 0.95;
+}
+
+.tresCardsDicas{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.cardDica{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+.cardDica img{
+    width: 100%;
+    border-radius: 12px;
 }
