@@ -25,12 +25,12 @@
   <div class="containerUsuario">
 <div class="dadosUsuario">
   <h2>Seus acertos no quiz</h2>
-  <p>10</p>
+  <p id="pAcertosUsuario"></p>
 </div>
 
 <div class="dadosUsuario">
   <h2>Média de acertos dos usuários</h2>
-  <p>15</p>
+  <p id = "pMediaAcertos"></p>
 </div>
 </div>
 <div class="dicas">
@@ -55,5 +55,69 @@
 </html>
 <script>
 n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+
+window.onload = function(){
+  acertosUsuario();
+  mediaAcertosUsuarios();
+}
+
+function acertosUsuario() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/quiz/acertosUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0) {
+          document.getElementById('pAcertosUsuario').innerHTML = resposta[0].acertosUsuario;
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('pAcertosUsuario').innerHTML = "0 acertos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
+  function mediaAcertosUsuarios() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/quiz/mediaAcertosUsuarios/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0) {
+          document.getElementById('pMediaAcertos').innerHTML = resposta[0].mediaAcertosUsuarios;
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('pMediaAcertos').innerHTML = "0 acertos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
 
 </script>

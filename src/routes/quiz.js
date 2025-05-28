@@ -12,4 +12,12 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+router.get("/acertosUsuario/:idUsuario", function(req,res){
+quizController.acertosUsuario(req,res);
+});
+
+router.get("/mediaAcertosUsuarios/:idUsuario", function(req,res){
+quizController.mediaAcertosUsuarios(req,res);
+});
+
 module.exports = router;

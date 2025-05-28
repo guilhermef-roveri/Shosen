@@ -22,7 +22,29 @@ function cadastrar(req, res) {
     })
 }
 
+function acertosUsuario(req,res){
+    var idUsuario = req.params.idUsuario;
+
+    quizModel   .acertosUsuario(idUsuario).then(function (resposta){
+        res.status(200).json(resposta);
+    }).catch(function (erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function mediaAcertosUsuarios(req,res){
+    var idUsuario = req.params.idUsuario;
+
+    quizModel.mediaAcertosUsuarios(idUsuario).then(function (resposta){
+        res.status(200).json(resposta);
+    }).catch(function (erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     listar,
-    cadastrar
+    cadastrar,
+    acertosUsuario,
+    mediaAcertosUsuarios
 }

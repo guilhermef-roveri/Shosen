@@ -18,7 +18,7 @@ function mediaTreino(idUsuario){
 function mediaGeral(){
     var instrucao = `
 SELECT round(AVG(tempoTreino)) as MediaTreinoGeral FROM treino
-INNER JOIN usuario on idUsuario = fkUsuario `
+INNER JOIN usuario on idUsuario = fkUsuario`
 
 return database.executar(instrucao)
 }
