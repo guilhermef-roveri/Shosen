@@ -15,10 +15,10 @@ function mediaTreino(idUsuario){
     return database.executar(instrucao)
 }
 
-function mediaGeral(){
+function mediaGeral(idUsuario){
     var instrucao = `
 SELECT round(AVG(tempoTreino)) as MediaTreinoGeral FROM treino
-INNER JOIN usuario on idUsuario = fkUsuario`
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario != '${idUsuario}';`
 
 return database.executar(instrucao)
 }
@@ -36,8 +36,18 @@ function horaGrafico(idUsuario){
     var instrucao = `SELECT * 
     FROM treino
     INNER JOIN usuario on idUsuario = fkUsuario
-    WHERE idUsuario = '${idUsuario}';`
+    WHERE idUsuario = '${idUsuario}' ORDER BY  dia LIMIT 7;`
 
+    return database.executar(instrucao)
+}
+
+function graficoComparacaoMedias(idUsuario){
+    var instrucao = `
+     SELECT (SELECT round(AVG(tempoTreino)) FROM treino 
+    INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}) as MediaUsuario,
+(SELECT round(AVG(tempoTreino)) FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario != '${idUsuario}) as MediaGeral;'
+    `
     return database.executar(instrucao)
 }
 
@@ -46,5 +56,6 @@ module.exports = {
     horasTotais,
     mediaTreino,
     mediaGeral,
-    horaGrafico
+    horaGrafico,
+    graficoComparacaoMedias
 }

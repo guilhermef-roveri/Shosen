@@ -156,7 +156,7 @@
   async function buscarMediaGeral() {
     const idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch(`/treino/mediaGeral`, {
+    fetch(`/treino/mediaGeral/${idUsuario}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
