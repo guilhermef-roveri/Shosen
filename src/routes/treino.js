@@ -29,4 +29,8 @@ router.get("/horaGrafico/:idUsuario", function(req,res){
 treinoController.horaGrafico(req,res);
 })
 
+router.get("/graficoComparacaoMedias/:idUsuario", function(req,res){
+treinoController.graficoComparacaoMedias(req,res);
+})
+
 module.exports = router;

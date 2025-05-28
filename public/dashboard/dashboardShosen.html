@@ -24,26 +24,26 @@
     </ul>
   </nav>
   <div class="divTotal">
-  <div class="div_mediaHoras">
-    <div class="dadosUsuarios">
-      <h3>Sua média de treinos diários</h3>
-      <p id="media_Usuario"></p>
+    <div class="div_mediaHoras">
+      <div class="dadosUsuarios">
+        <h3>Sua média de treinos diários</h3>
+        <p id="media_Usuario"></p>
+      </div>
+      <div class="dadosUsuarios">
+        <h3>Média de treinos(Usuários)</h3>
+        <p id="media_geral"></p>
+      </div>
+      <div class="dadosUsuarios">
+        <h3>Seu total de minutos</h3>
+        <p id="dado_TotalDeHoras"></p>
+      </div>
     </div>
-    <div class="dadosUsuarios">
-      <h3>Média de treinos(Usuários)</h3>
-      <p id="media_geral"></p>
-    </div>
-    <div class="dadosUsuarios">
-      <h3>Seu total de minutos</h3>
-      <p id="dado_TotalDeHoras"></p>
-    </div>
-  </div>
-  <div class="dadosGraficos">
-    <div id="graficoUm">
-      <h1>Seus últimos treinos</h1>
-      <canvas id="myChartBar"></canvas>
-    </div>
-    
+    <div class="dadosGraficos">
+      <div id="graficoUm">
+        <h1>Seus últimos treinos</h1>
+        <canvas id="myChartBar"></canvas>
+      </div>
+
       <div id="graficoDois">
         <h1>Media de Treinos</h1>
         <canvas id="mySecondChart"></canvas>
@@ -88,6 +88,7 @@
     buscarMediaUsuario();
     buscarMediaGeral();
     horarioGrafico();
+    mediaTotal();
   }
   n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
 
@@ -231,28 +232,44 @@
 
   function mediaTotal() {
     var idUsuario = sessionStorage.ID_USUARIO;
-  }
-  new Chart(idx, {
-    type: 'bar',
-    data: {
-      labels: ["Você", "Usuários"],
-      datasets: [{
-        label: 'Médias',
-        data: [1, 2],
-        backgroundColor: 'rgba(169, 15, 15, 1)',
-        borderColor: 'white',
-        borderWidth: 1
-      },
-      ]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+
+    fetch(`/treino/graficoComparacaoMedias/${idUsuario}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+
+      .then(data => {
+        if (data.length === 0) {
+          alert("Não há dados encontrados")
+          return
         }
-      }
-    }
-  });
-
-
+        const mediaUsuarioUnico = data.map(item => item.MediaUsuario)
+        const mediaGeralUsuarios = data.map(item => item.MediaGeral)
+       new Chart(idx, {
+        type: 'bar',
+        data: {
+          labels: ["Você", "Outros usuários"],
+          datasets: [{
+            label: 'Minutos por dia',
+            // Passar o index e separar por barra
+            data: [mediaUsuarioUnico[0], mediaGeralUsuarios[0]],
+            backgroundColor: ['rgba(169, 15, 15, 1)', 'rgba(169, 15, 15, 1)'],
+            borderColor: ['white', 'white'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    })
+    .catch(erro => {
+      console.error("Erro ao buscar dados para o gráfico de média:", erro);
+    });
+}
 </script>

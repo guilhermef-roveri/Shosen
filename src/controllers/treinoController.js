@@ -63,11 +63,21 @@ function horaGrafico(req, res) {
     })
 }
 
+function graficoComparacaoMedias(req,res){
+    var idUsuario = req.params.idUsuario;
+    treinoModel.graficoComparacaoMedias(idUsuario).then(function (resposta) {
+        res.status(200).json(resposta);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
     horasTotais,
     mediaUsuario,
     mediaGeral,
-    horaGrafico
+    horaGrafico,
+    graficoComparacaoMedias
 }

@@ -44,9 +44,9 @@ function horaGrafico(idUsuario){
 function graficoComparacaoMedias(idUsuario){
     var instrucao = `
      SELECT (SELECT round(AVG(tempoTreino)) FROM treino 
-    INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}) as MediaUsuario,
+    INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}') as MediaUsuario,
 (SELECT round(AVG(tempoTreino)) FROM treino
-INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario != '${idUsuario}) as MediaGeral;'
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario != '${idUsuario}') as MediaGeral;
     `
     return database.executar(instrucao)
 }
