@@ -18,7 +18,7 @@
     <ul class="links">
       <li class="botaoSelecionado">Treinos</li>
       <li><a href="dashboardShosen.html">Dashboard</li>
-        <li><a href="dashboardQuiz.html">Dashboard Quiz</a></li>
+      <li><a href="dashboardQuiz.html">Dashboard Quiz</a></li>
       <li><a href="telaInicioQuiz.html">Quiz</a></li>
       <li>Olá, <span id="n_usuario" style="font-weight: bold;"></span>!</li>
       <li class="btnRegistro" onclick="limparSessao()">Sair</li>
@@ -27,8 +27,8 @@
   <div class="telaTreino">
     <img src="../assets/horasJudo.png">
     <div class="div_horasDeTreino">
-      <h1>Monitore suas horas de treino</h1>
-      <p class="textoTreino">Acompanhar suas horas de treino é essencial para melhorar a produtividade e alcançar
+      <h1>Monitore seus treinos</h1>
+      <p class="textoTreino">Acompanhar suas e monitorar o seu tempo de treino é essencial para melhorar a produtividade e alcançar
         seus objetivos físicos e mentais dentro do Judô. </p>
       <p class="textoTreino">
         Utilize este espaço para registrar o tempo de treino que você teve para ver seu progresso durante as
@@ -36,8 +36,8 @@
         do ranking de treinos semanais.
       </p>
       <div class="div_cardHoras">
-        <h2>Monitore suas horas de treino</h2>
-        <p>Quantas horas você treinou hoje?</p>
+        <h2>Monitore a duração de seus treino</h2>
+        <p>Quantos minutos você treinou hoje?</p>
         <input id="ipt_horas" placeholder="Digite as horas" type="number">
         <button onclick="RegistrarTreinos()" style="cursor: pointer;">Registrar</button>
       </div>
@@ -78,16 +78,18 @@
           });
 
         } else {
-Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Treino registrado!",
-            showConfirmButton: false,
-            timer: 4000,
-            background: "#111", // Cor escura de fundo
-            color: "#f1f1f1",    // Texto em branco
-            confirmButtonColor: "#f1f1f1",
-          });        }
+          resposta.text().then(textoErro => {
+            // Eu leio a requisição de erro que o back-end me mandou, e exibo com a variável do arrowFunction
+            Swal.fire({
+              icon: "error",
+              title: "Erro ao cadastrar",
+              text: textoErro,
+              background: "#111",
+              color: "#f1f1f1",
+            });
+          });
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

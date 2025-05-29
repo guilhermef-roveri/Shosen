@@ -22,7 +22,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 42%;
+    width: 44%;
     list-style: none;
     
 }
@@ -34,7 +34,7 @@ nav {
 .btnEntrar {
     border: 2px solid white;
     font-size: 16px;
-    width: 110px;
+    width: 90px;
     height: 40px;
     align-items: center;
     justify-content: center;
@@ -48,7 +48,7 @@ nav {
     background-color: rgba(169, 15, 15, 1);
     border: 2px solid white;
     font-size: 16px;
-    width: 110px;
+    width: 90px;
     height: 40px;
     align-items: center;
     justify-content: center;

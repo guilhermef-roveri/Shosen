@@ -40,7 +40,7 @@
     </div>
     <div class="dadosGraficos">
       <div id="graficoUm">
-        <h1>Seus últimos treinos</h1>
+        <h1>Seus últimos 7 dias de treinos</h1>
         <canvas id="myChartBar"></canvas>
       </div>
 
@@ -54,23 +54,23 @@
         </div>
         <div class="rankingMensal">
           <p>1º - Guilherme Roveri</p>
-          <p>50 horas</p>
+          <p>56 horas</p>
         </div>
         <div class="rankingMensal">
           <p>2º - Nicolas Barbosa</p>
-          <p>45 horas</p>
+          <p>40 horas</p>
         </div>
         <div class="rankingMensal">
           <p>3º - João Carlos</p>
-          <p>30 horas</p>
+          <p>33 horas</p>
         </div>
         <div class="rankingMensal">
           <p>4º - Felipe Lima</p>
-          <p>20 horas</p>
+          <p>26 horas</p>
         </div>
         <div class="rankingMensal">
-          <p>5º - Kalline Porfírio</p>
-          <p>5 horas</p>
+          <p>5º - Kalline Porfirio</p>
+          <p>12 horas</p>
         </div>
         </canvas>
       </div>
@@ -114,7 +114,7 @@
       })
       .then(resposta => {
         if (resposta && resposta.length > 0) {
-          document.getElementById('dado_TotalDeHoras').innerHTML = resposta[0].TempoTreinado + " minutos";
+          document.getElementById('dado_TotalDeHoras').innerHTML = ((resposta[0].TempoTreinado )) + " minutos";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
           document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";

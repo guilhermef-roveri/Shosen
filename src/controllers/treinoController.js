@@ -20,6 +20,14 @@ function cadastrar(req, res) {
     treinoModel.cadastrar(horasTreino, idUsuario).then(function (resposta) {
         res.status(200).send("Treino criado com sucesso");
     }).catch(function (erro) {
+
+        if (erro.errno === 1062) {
+            res.status(409).send("Você já informou uma quantidade de treino para hoje");
+            return
+        }console.log(
+                        "\nHouve um erro ao enviar seu tempo de treino! Erro: ",
+                        erro.sqlMessage
+                    );
         res.status(500).json(erro.sqlMessage);
     })
 }
@@ -63,7 +71,7 @@ function horaGrafico(req, res) {
     })
 }
 
-function graficoComparacaoMedias(req,res){
+function graficoComparacaoMedias(req, res) {
     var idUsuario = req.params.idUsuario;
     treinoModel.graficoComparacaoMedias(idUsuario).then(function (resposta) {
         res.status(200).json(resposta);

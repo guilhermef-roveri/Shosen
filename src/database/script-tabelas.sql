@@ -1,12 +1,4 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE Shosen;
+CREATE DATABASE IF NOT EXISTS Shosen;
 
 use Shosen;
 
@@ -14,13 +6,52 @@ CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50),
 email VARCHAR(60),
-senha VARCHAR(25)
+senha VARCHAR(25),
+UNIQUE INDEX index_email(email)
 );
 
-INSERT INTO usuario (nome, email, senha)
-VALUES ('Ana Silva', 'ana.silva@email.com', 'senha123'),
- ('Bruno Costa', 'bruno.costa@email.com', 'abc12345'),
- ('Carla Mendes', 'carla.mendes@email.com', 'minhasenha'),
- ('Diego Rocha', 'diego.rocha@email.com', '12345678');
+CREATE TABLE treino(
+idTreino INT PRIMARY KEY AUTO_INCREMENT,
+fkUsuario INT,
+dia DATE,
+tempoTreino INT,
+CONSTRAINT fkUsuario FOREIGN KEY(fkUsuario) REFERENCES usuario(idUsuario),
+CONSTRAINT unqUsuarioPorDia UNIQUE(fkUsuario,dia)
+);
 
- 
+-- Criacao tabela do quiz
+CREATE TABLE acertosQuiz(
+idResultado INT AUTO_INCREMENT,
+fkUsuario INT,
+acertos INT,
+dia DATE,
+CONSTRAINT fkQuiz FOREIGN KEY(fkUsuario) references usuario(idUsuario),
+PRIMARY KEY(idResultado,fkUsuario)
+);
+
+
+
+SELECT SUM(tempoTreino) as TempoTreinado FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3; -- Horas de treino totais do usuário
+
+SELECT round(AVG(tempoTreino)) as MediaTreinoGeral FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario; -- Media de Treino Geral
+
+ SELECT round(AVG(tempoTreino)) as MediaTreinoUsuario FROM treino 
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3; -- Média de treino do usuário
+
+-- Horas de treino do usuário
+
+SELECT * FROM treino;
+
+
+SELECT DAY(dia) FROM treino 
+INNER JOIN  usuario on idUsuario = fkUsuario
+WHERE idUsuario = 3; -- Dias da semana de treino do usuário
+
+SELECT COUNT(tempoTreino), nome, DAY(dia) FROM treino
+INNER JOIN usuario on idUsuario = fkUsuario
+GROUP BY nome, dia; -- Tempo de treino
+
+SELECT * FROM treino 
+INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = 3;
