@@ -36,7 +36,7 @@ function horaGrafico(idUsuario){
     var instrucao = `SELECT * 
     FROM treino
     INNER JOIN usuario on idUsuario = fkUsuario
-    WHERE idUsuario = '${idUsuario}' ORDER BY  dia LIMIT 7;`
+    WHERE idUsuario = '${idUsuario}' ORDER BY  dia DESC LIMIT 7;`
 
     return database.executar(instrucao)
 }

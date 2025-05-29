@@ -200,11 +200,11 @@
           alert("Não há dados encontrados")
           return
         }
-        const horas = data.map(item => item.tempoTreino)
+        const horas = data.map(item => item.tempoTreino).reverse()
         const dia = data.map(item => {
           const dataObj = new Date(item.dia);
           return dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-        });
+        }).reverse();
 
         new Chart(ctx, {
           type: 'bar',
