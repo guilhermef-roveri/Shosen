@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divTeste</title>
+</head>
+
+<body style="background-color: blueviolet;">
+    <div class="divAlertas">
+     <img src="public/assets/icones/erro.png">
+     <h1>Mensagem de erro!</h1>
+     <p>Informações do erro</p>
+    </div>
+
+    <div class="divAlertas">
+     <img src="public/assets/icones/alerta.png">
+     <h1>Mensagem de alerta!</h1>
+     <p>Informações do alerta</p>
+     <button>Tá bom</button>
+    </div>
+
+    <div class="divAlertas">
+     <img src="public/assets/icones/sucesso.png">
+     <h1>Mensagem de sucesso!</h1>
+     <p>Informações do sucesso</p>
+    </div>
+</body>
+
+</html>
+<style>
+    .divAlertas {
+        background-color: black;
+        width: 400px;
+        height: 250px;
+        border: 1px solid white;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+        color: white;
+    }
+
+    .divAlertas img{
+        width: 80px;
+        height: 80px;
+    }
+
+    .divAlertas button{
+        width: 120px;
+        height: 35px;
+        border-radius: 12px;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+</style>
