@@ -7,21 +7,21 @@
     <title>divTeste</title>
 </head>
 
-<body style="background-color: blueviolet;">
-    <div class="divAlertas">
+<body style="background-color: blueviolet; overflow: hidden;">
+    <div >
      <img src="public/assets/icones/erro.png">
      <h1>Mensagem de erro!</h1>
      <p>Informações do erro</p>
     </div>
 
-    <div class="divAlertas">
-     <img src="public/assets/icones/alerta.png">
-     <h1>Mensagem de alerta!</h1>
-     <p>Informações do alerta</p>
-     <button>Tá bom</button>
+    <div class="divAlertas" id="alertaTeste">
+     <img src="public/assets/icones/IconeAlerta.png">
+     <h1>Bem vindo!</h1>
+     <p>Para se cadastrar, sua senha deve conter mais de 6 dígitos,<br> uma letra maiúscula e um caractere especial!</p>
+     <button onclick="esconderAlerta()">Tá bom</button>
     </div>
 
-    <div class="divAlertas">
+    <div class="">
      <img src="public/assets/icones/sucesso.png">
      <h1>Mensagem de sucesso!</h1>
      <p>Informações do sucesso</p>
@@ -29,11 +29,23 @@
 </body>
 
 </html>
+
+<script>
+    function esconderAlerta(){
+       
+    document.getElementById('alertaTeste').style.display = 'none'
+       
+    }
+</script>
+
 <style>
     .divAlertas {
+        position: fixed;
+        top: 30%;
+        left: 35%;
         background-color: black;
-        width: 400px;
-        height: 250px;
+        width: 500px;
+        height: 400px;
         border: 1px solid white;
         border-radius: 12px;
         display: flex;
@@ -43,17 +55,21 @@
         color: white;
     }
 
+    .divAlertas p{
+        font-size: 18px;
+        text-align: center;
+    }
     .divAlertas img{
-        width: 80px;
-        height: 80px;
+        width: 180px;
+        height: 180px;
     }
 
     .divAlertas button{
         width: 120px;
         height: 35px;
         border-radius: 12px;
-        background-color: transparent;
+        background-color: #655CCA;
         color: white;
-        border: 2px solid white;
+        border: 2px solid black;
     }
 </style>

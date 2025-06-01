@@ -201,6 +201,9 @@
           return
         }
         const horas = data.map(item => item.tempoTreino).reverse()
+        // O MySQL vai trazer meus dados com ordem inversa, já que o LIMIT vai pegar as datas mais antigas.
+        // Uso o ORDER BY com DESC pra trazer os atuais e depois os outros 6, e na hora de criar o array com map eu
+        // Pego os dados de forma inversa, pro gráfico ficar em estado crescente
         const dia = data.map(item => {
           const dataObj = new Date(item.dia);
           return dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });

@@ -16,7 +16,7 @@
 
 </head>
 
-<body onload="regrasCadastro()">
+<body>
 
 
   <div class="containerRegistro">
@@ -53,23 +53,27 @@
     <img src="assets/fotoLogin.png" class="pngRegistro">
   </div>
 
+  <div class="fundoEscuro" id="divEscura">
+  <div class="divAlertasAzul" id="alertaTeste">
+     <img src="./assets/icones/IconeAlerta.png">
+     <h1>Bem vindo!</h1>
+     <p>Para se cadastrar, sua senha deve conter mais de 6 dígitos,<br> uma letra maiúscula e um caractere especial!</p>
+     <button onclick="esconderAlerta()">Continuar</button>
+    </div>
+  </div>
 </body>
 
 </html>
 
 <script>
 
-  function regrasCadastro() {
-    Swal.fire({
-      position: "center",
-      icon: "info",
-      title: "Bem vindo!<br>Para se cadastrar, sua senha deve conter mais de 6 dígitos, uma letra maiúscula e um caractere especial!",
-      showConfirmButton: true,
-      background: "#111",
-      color: "#f1f1f1",
-    });
-  }
+  function esconderAlerta(){
+       
+    document.getElementById('alertaTeste').style.display = 'none'
+        document.getElementById('divEscura').style.display = 'none'
 
+       
+    } 
 
   function cadastrar() {
     var nomeVar = nome_input.value;
@@ -174,7 +178,7 @@
             showConfirmButton: false,
             timer: 2500,
             background: "#111",
-            color: "#f1f1f1",    
+            color: "#f1f1f1",
           });
           setTimeout(() => {
             window.location = "login.html";
