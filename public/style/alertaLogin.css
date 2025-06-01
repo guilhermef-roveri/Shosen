@@ -1,0 +1,69 @@
+/* Alertas de sucesso */
+
+ .divAlertasSucesso {
+        position: fixed;
+        top: 65%;
+        left: 3%;
+        background-color: #212322;
+        width: 500px;
+        height: 200px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+        color: white;
+    }
+
+    .divAlertasSucesso p{
+        font-size: 18px;
+        text-align: center;
+    }
+    .divAlertasSucesso img{
+        width: 120px;
+        height: 120px;
+    }
+
+    .divAlertasSucesso button{
+        width: 120px;
+        height: 35px;
+        border-radius: 12px;
+        background-color: #655CCA;
+        color: white;
+        border: 2px solid black;
+    }
+
+    /* Alerta de erro */
+
+    .divAlertaErro {
+        position: fixed;
+        top: 65%;
+        left: 3%;
+        background-color: #212322;
+        width: 500px;
+        height: 200px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+        color: white;
+    }
+
+    .divAlertaErro p{
+        font-size: 18px;
+        text-align: center;
+    }
+    .divAlertaErro img{
+        width: 120px;
+        height: 120px;
+    }
+
+    .divAlertaErro button{
+        width: 120px;
+        height: 35px;
+        border-radius: 12px;
+        background-color: #655CCA;
+        color: white;
+        border: 2px solid black;
+    }
