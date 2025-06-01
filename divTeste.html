@@ -8,24 +8,14 @@
 </head>
 
 <body style="background-color: blueviolet; overflow: hidden;">
-    <div >
-     <img src="public/assets/icones/erro.png">
-     <h1>Mensagem de erro!</h1>
-     <p>Informações do erro</p>
+  
+
+    <div class="divAlertaErro" id="alertaTeste">
+     <img src="public/assets/icones/alertaErro.png">
+     <h1>Seu usuário foi cadastrado!</h1>
     </div>
 
-    <div class="divAlertas" id="alertaTeste">
-     <img src="public/assets/icones/IconeAlerta.png">
-     <h1>Bem vindo!</h1>
-     <p>Para se cadastrar, sua senha deve conter mais de 6 dígitos,<br> uma letra maiúscula e um caractere especial!</p>
-     <button onclick="esconderAlerta()">Tá bom</button>
-    </div>
 
-    <div class="">
-     <img src="public/assets/icones/sucesso.png">
-     <h1>Mensagem de sucesso!</h1>
-     <p>Informações do sucesso</p>
-    </div>
 </body>
 
 </html>
@@ -39,13 +29,13 @@
 </script>
 
 <style>
-    .divAlertas {
+    .divAlertaErro {
         position: fixed;
-        top: 30%;
-        left: 35%;
+        top: 65%;
+        left: 60%;
         background-color: black;
         width: 500px;
-        height: 400px;
+        height: 200px;
         border: 1px solid white;
         border-radius: 12px;
         display: flex;
@@ -55,16 +45,16 @@
         color: white;
     }
 
-    .divAlertas p{
+    .divAlertaErro p{
         font-size: 18px;
         text-align: center;
     }
-    .divAlertas img{
-        width: 180px;
-        height: 180px;
+    .divAlertaErro img{
+        width: 120px;
+        height: 120px;
     }
 
-    .divAlertas button{
+    .divAlertaErro button{
         width: 120px;
         height: 35px;
         border-radius: 12px;

@@ -54,26 +54,36 @@
   </div>
 
   <div class="fundoEscuro" id="divEscura">
-  <div class="divAlertasAzul" id="alertaTeste">
-     <img src="./assets/icones/IconeAlerta.png">
-     <h1>Bem vindo!</h1>
-     <p>Para se cadastrar, sua senha deve conter mais de 6 dígitos,<br> uma letra maiúscula e um caractere especial!</p>
-     <button onclick="esconderAlerta()">Continuar</button>
+    <div class="divAlertasAzul" id="alertaImportante">
+      <img src="./assets/icones/IconeAlerta.png">
+      <h1>Bem vindo!</h1>
+      <p>Para se cadastrar, sua senha deve conter mais de 6 dígitos,<br> uma letra maiúscula e um caractere especial!
+      </p>
+      <button onclick="esconderAlerta()">Continuar</button>
     </div>
   </div>
+
+
+  <div class="divAlertasSucesso" id="alertaSucesso" style="display: none;">
+    <img src="./assets/icones/sucesso.png">
+    <h1>Seu usuário foi cadastrado!</h1>
+  </div>
+
+  <div class="divAlertaErro" id="alertaErro" style="display: none;">
+     <img src="./assets/icones/alertaErro.png">
+     <h1>Erro!
+     </h1>
+     <p id="mensagemErro"></p>
+    </div>
 </body>
 
 </html>
 
 <script>
-
-  function esconderAlerta(){
-       
-    document.getElementById('alertaTeste').style.display = 'none'
-        document.getElementById('divEscura').style.display = 'none'
-
-       
-    } 
+  function esconderAlerta() {
+    document.getElementById('alertaImportante').style.display = 'none';
+    document.getElementById('divEscura').style.display = 'none';
+  }
 
   function cadastrar() {
     var nomeVar = nome_input.value;
@@ -82,40 +92,12 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-
-
     // Funcoes de validação de Email e Senha
-
-    var textoComArroba = emailVar.indexOf("@")
-    // Se voltar -1 é por que  não tem
+    var textoComArroba = emailVar.indexOf("@");
+    // Se voltar -1 é porque não tem
 
     const regex = /[!@#$%^&*(),.?":{}|<>]/;
-
     const regexLetra = /[A-Z]/;
-
-    // Variável do  alert:
-
-    function alertaValidacao(texto) {
-      Swal.fire({
-        position: "bottom-end",
-        icon: "error",
-        title: "Resposta",
-        showConfirmButton: false,
-        timer: 2000,
-        background: "#111", // Cor escura de fundo
-        color: "#f1f1f1",    // Texto em branco
-        confirmButtonColor: "#f1f1f1",
-        customClass: {
-          confirmButton: "botaoConfirmar",
-          icon: "iconeValidacao"
-        }
-      });
-      // setTimeout(() => {
-      //   window.location = "login.html";
-      // }, "3000");
-    }
-
-
 
     // Verificando se há algum campo em branco
     if (
@@ -125,34 +107,58 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      alertaValidacao("Você deixou algum campo em branco!");
-      return
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Algum campo está em branco`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
     } else if (
       nomeVar.length < 1 ||
-      senhaVar.length < 6) {
-      alertaValidacao("Sua senha deve ter mais de 6 caracteres.")
-      return
-    } else if (
-      confirmacaoSenhaVar != senhaVar
-
+      senhaVar.length < 6
     ) {
-      alertaValidacao("Suas senhas não correspondem")
-      return
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Sua senha deve ter mais de 6 caracteres!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
+    } else if (confirmacaoSenhaVar != senhaVar) {
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Suas senhas não correspondem!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
     } else if (textoComArroba < 0) {
-      alertaValidacao("O seu email deve conter um @")
-      return
-    } else if (
-      confirmacaoEmailVar != emailVar) {
-      alertaValidacao("Seus emails não correspondem")
-      return
-    } else if (regex.test(senhaVar) != true) {
-      alertaValidacao("Sua senha deve conter um caractere especial")
-      return
-    } else if (regexLetra.test(senhaVar) != true) {
-      alertaValidacao("Você deve conter uma letra maiúscula na senha!")
-      return
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Seu email deve conter um @!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
+    } else if (confirmacaoEmailVar != emailVar) {
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Os dois emails devem ser iguais!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
+    } else if (!regex.test(senhaVar)) {
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Sua senha deve ter um caractere especial!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
+    } else if (!regexLetra.test(senhaVar)) {
+      document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `Você deve conter uma letra maiúscula na senha!`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
+      return;
     }
-
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -171,28 +177,21 @@
 
         if (resposta.ok) {
           // Alert para confirmar o cadastro
-          Swal.fire({
-            position: "bottom-end",
-            icon: "success",
-            title: "Seu usuário foi cadastrado!",
-            showConfirmButton: false,
-            timer: 2500,
-            background: "#111",
-            color: "#f1f1f1",
-          });
+          document.getElementById('alertaSucesso').style.display = 'flex';
+          setInterval(() => {
+            document.getElementById('alertaSucesso').style.display = 'none';
+          }, 5000);
+
           setTimeout(() => {
             window.location = "login.html";
-          }, "3000");
+          }, 5000);
         } else {
           resposta.text().then(textoErro => {
-            // Eu leio a requisição de erro que o back-end me mandou, e exibo com a variável do arrowFunction
-            Swal.fire({
-              icon: "error",
-              title: "Erro ao cadastrar",
-              text: textoErro,
-              background: "#111",
-              color: "#f1f1f1",
-            });
+            document.getElementById('alertaErro').style.display = 'flex';
+      document.getElementById('mensagemErro').innerHTML = `${textoErro}`;
+      setInterval(() => {
+        document.getElementById('alertaErro').style.display = 'none';
+      }, 5000);
           });
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
@@ -203,6 +202,4 @@
 
     return false;
   }
-
-
 </script>
