@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Alerta de entrada na página de cadastro */
+
+.fundoEscuro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+
+.divAlertasAzul{
+    position: fixed;
+    top: 28%;
+    left: 35%;
+    background-color: #212322;
+    width: 500px;
+    height: 300px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    color: white;
+    z-index: 1;
+    text-align: center;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.divAlertasAzul p {
+    font-size: 18px;
+    text-align: center;
+    line-height: 35px;
+    margin-top: 20px;
+}
+
+.divAlertasAzul img {
+    width: 120px;
+    height: 120px;
+}
+
+.divAlertasAzul button {
+    width: 150px;
+    font-size: 18px;
+    height: 35px;
+    border-radius: 12px;
+    background-color: #655CCA;
+    color: white;
+    border: 2px solid transparent;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;;
+}
+
+/* Alerta de inicio na tela de cadastro */
+

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../style/elementosDash.css">
   <link rel="stylesheet" href="../style/treino.css">
-  <link rel="stylesheet" href="../style/alertas.css">
+  <link rel="stylesheet" href="../style/alertaTreino.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script src="../js/sessao.js"></script>
@@ -29,7 +29,8 @@
     <img src="../assets/horasJudo.png">
     <div class="div_horasDeTreino">
       <h1>Monitore seus treinos</h1>
-      <p class="textoTreino">Acompanhar suas e monitorar o seu tempo de treino é essencial para melhorar a produtividade e alcançar
+      <p class="textoTreino">Acompanhar suas e monitorar o seu tempo de treino é essencial para melhorar a produtividade
+        e alcançar
         seus objetivos físicos e mentais dentro do Judô. </p>
       <p class="textoTreino">
         Utilize este espaço para registrar o tempo de treino que você teve para ver seu progresso durante as
@@ -42,6 +43,22 @@
         <input id="ipt_horas" placeholder="Digite as horas" type="number">
         <button onclick="RegistrarTreinos()" style="cursor: pointer;">Registrar</button>
       </div>
+    </div>
+  </div>
+
+  <div class="fundoEscuro" id="divEscura1" style="display: none;">
+    <div class="divAlertasAzul" id="alertaSucesso" style="display: none;">
+      <img src="../assets/icones/sucesso.png">
+      <h1>Treino informado com sucesso!</h1>
+      </p>
+    </div>
+  </div>
+    <div class="fundoEscuro" id="divEscura2" style="display: none;">
+
+    <div class="divAlertasAzul" id="alertaErro" style="display : none">
+      <img src="../assets/icones/alertaErro.png">
+      <h1 id="msgErro"></h1>
+      </p>
     </div>
   </div>
 </body>
@@ -67,27 +84,25 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Treino registrado!",
-            showConfirmButton: false,
-            timer: 4000,
-            background: "#111", // Cor escura de fundo
-            color: "#f1f1f1",    // Texto em branco
-            confirmButtonColor: "#f1f1f1",
-          });
+          document.getElementById('divEscura1').style.display = 'flex'
+          document.getElementById('alertaSucesso').style.display = 'flex'
+          setInterval(() => {
+            document.getElementById('divEscura1').style.display = 'none'
+            document.getElementById('alertaSucesso').style.display = 'none'
+          }, 5000);
 
         } else {
           resposta.text().then(textoErro => {
             // Eu leio a requisição de erro que o back-end me mandou, e exibo com a variável do arrowFunction
-            Swal.fire({
-              icon: "error",
-              title: "Erro ao cadastrar",
-              text: textoErro,
-              background: "#111",
-              color: "#f1f1f1",
-            });
+            document.getElementById('divEscura2').style.display = 'flex'
+            document.getElementById('alertaErro').style.display = 'flex'
+            document.getElementById('msgErro').innerHTML = `${textoErro}`
+
+            setInterval(() => {
+              document.getElementById('divEscura2').style.display = 'none'
+              document.getElementById('alertaErro').style.display = 'none'
+            }, 5000);
+
           });
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
