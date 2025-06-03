@@ -7,8 +7,7 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="../style/quiz.css">
     <link rel="stylesheet" href="../style/telaInicioQuiz.css">
-    <link rel="stylesheet" href="../style/alertas.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../style/alertaTreino.css">
 
 </head>
 
@@ -81,6 +80,36 @@
 
         </div>
     </div>
+    <div class="fundoEscuro" id="divEscura1" style="display: none;">
+        <div class="divAlertasAzul" id="alertaSucesso" style="display: none;">
+            <img src="../assets/icones/sucesso.png">
+            <h1 id="msgSucesso"></h1>
+            </p>
+        </div>
+    </div>
+    <div class="fundoEscuro" id="divEscura2" style="display: none;">
+
+        <div class="divAlertasAzul" id="alertaErro" style="display : none">
+            <img src="../assets/icones/alertaErro.png">
+            <h1 id="msgErro"></h1>
+            </p>
+        </div>
+    </div>
+
+    <div class="fundoEscuro" id="divEscura3" style="display: none;">
+
+        <div class="divAlertasAzul" id="alertaAtencao" style="display : none">
+            <img src="../assets/icones/IconeAlerta.png">
+            <h1 id="msgAtencao"></h1>
+            </p>
+        </div>
+    </div>
+    <div class="fundoEscuro" id="divEscura4" style="display: none;">
+
+        <div class="divAlertasAzul" id="alertaAcertos">
+            <img id="imagemAcertos">
+            <h1 id="msgFinal"></h1>
+        </div>
 </body>
 
 </html>
@@ -102,7 +131,7 @@
             alternativaA: "Jackie Chan",
             alternativaB: "Matsuyo Maeda",
             alternativaC: "Jigoro Kano",
-            alternativaD: "Morihei Ueshiba",
+            alternativaD: "Carlos Macena",
             alternativaCorreta: "alternativaC",
             imagem: "../assets/imagensQuiz/jigoroKano.jpg"
         },
@@ -111,7 +140,7 @@
             pergunta: "Qual o nome da vestimenta do judô?",
             alternativaA: "Hakimono",
             alternativaB: "Roupão",
-            alternativaC: "Kimono",
+            alternativaC: "Avental",
             alternativaD: "Judogi",
             alternativaCorreta: "alternativaD",
             imagem: "../assets/imagensQuiz/judogui.png"
@@ -192,42 +221,15 @@
     let hasChecked = false;
 
     let ultimoAlerta = false
-
-    function alertaValidacao() {
-        Swal.fire({
-            position: "center",
-            title: "Resposta enviada!",
-            showConfirmButton: false,
-            timer: 1000,
-            background: "#111", // Cor escura de fundo
-            color: "#f1f1f1",    // Texto em branco
-            confirmButtonColor: "#f1f1f1",
-        });
-    }
-
     function alertaErro() {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Selecione uma alternativa!",
-            showConfirmButton: false,
-            timer: 1000,
-            background: "#111", // Cor escura de fundo
-            color: "#f1f1f1",    // Texto em branco
-            confirmButtonColor: "#f1f1f1",
-        });
-    }
+        document.getElementById('divEscura2').style.display = 'flex'
+        document.getElementById('alertaErro').style.display = 'flex'
+        document.getElementById('msgErro').innerHTML = `Selecione uma alternativa!`
 
-    function alertaPontuacao(texto, nivel) {
-        Swal.fire({
-            position: "center",
-            icon: nivel,
-            title: texto,
-            showConfirmButton: true,
-            background: "#111",
-            color: "#f1f1f1",
-
-        });
+        setInterval(() => {
+            document.getElementById('divEscura2').style.display = 'none'
+            document.getElementById('alertaErro').style.display = 'none'
+        }, 2000);
     }
 
     function onloadEsconder() {
@@ -271,7 +273,6 @@
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
                 hasChecked = true
-                alertaValidacao()
                 break
             }
         }
@@ -300,14 +301,16 @@
             if (ultimoAlerta = true && hasChecked == false) {
                 alertaErro()
             } else {
-                Swal.fire({
-                    position: "center",
-                    icon: "info",
-                    title: "Atenção! Essa é a última questão!",
-                    showConfirmButton: true,
-                    background: "#111",
-                    color: "#f1f1f1",
-                });
+                document.getElementById('alertaAtencao').style.display = 'flex'
+                document.getElementById('divEscura3').style.display = 'flex'
+                document.getElementById('msgAtencao').innerHTML = `Atenção! Essa é a última questão`
+                setTimeout(() => {
+                    document.getElementById('divEscura3').style.display = 'none'
+                    document.getElementById('alertaAtencao').style.display = 'none'
+                }, 3000);
+
+
+
                 preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
                 document.getElementById('btnProx').innerHTML = "Finalizar"
             }
@@ -345,6 +348,14 @@
         options.forEach((option) => {
 
             if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById('divEscura1').style.display = 'flex'
+                document.getElementById('alertaSucesso').style.display = 'flex'
+                document.getElementById('msgSucesso').innerHTML = `Resposta correta`
+
+                setTimeout(() => {
+                    document.getElementById('divEscura1').style.display = 'none'
+                    document.getElementById('alertaSucesso').style.display = 'none'
+                }, 3000);
 
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
 
@@ -357,6 +368,14 @@
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
 
                 const wrongLabelId = option.labels[0].id
+                document.getElementById('divEscura2').style.display = 'flex'
+                document.getElementById('alertaErro').style.display = 'flex'
+                document.getElementById('msgErro').innerHTML = `Resposta incorreta`
+
+                setTimeout(() => {
+                    document.getElementById('divEscura2').style.display = 'none'
+                    document.getElementById('alertaErro').style.display = 'none'
+                }, 3000);
 
 
 
@@ -382,13 +401,22 @@
         const porcentagemFinalDeAcertos = (pontuacaoFinal / quantidadeDeQuestoes) * 10
 
         if (porcentagemFinalDeAcertos <= 3) {
-            alertaPontuacao(`Você não estudou!<br> Seus acertos: ${porcentagemFinalDeAcertos}`, "error")
+            document.getElementById('divEscura4').style.display = 'flex'
+            document.getElementById('alertaAcertos').style.display = 'flex'
+            document.getElementById('imagemAcertos').src = '../assets/icones/joinhaNegativo.png'
+            document.getElementById('msgFinal').innerHTML = `Você não estudou!<br>Você acertou ${porcentagemFinalDeAcertos} questões de 10!`
         }
         else if (porcentagemFinalDeAcertos > 3 && porcentagemFinalDeAcertos < 8) {
-            alertaPontuacao(`Você pode melhorar!<br> Seus acertos: ${porcentagemFinalDeAcertos}`, "warning")
+            document.getElementById('divEscura4').style.display = 'flex'
+            document.getElementById('alertaAcertos').style.display = 'flex'
+            document.getElementById('imagemAcertos').src = '../assets/icones/joinhaMediano.png'
+            document.getElementById('msgFinal').innerHTML = `Você pode melhorar!<br>Você acertou ${porcentagemFinalDeAcertos} questões de 10!`
         }
         else if (porcentagemFinalDeAcertos >= 8) {
-            alertaPontuacao(`Você é muito bom!<br> Seus acertos: ${porcentagemFinalDeAcertos}`, "success")
+            document.getElementById('divEscura4').style.display = 'flex'
+            document.getElementById('alertaAcertos').style.display = 'flex'
+            document.getElementById('imagemAcertos').src = '../assets/icones/joinha.png'
+            document.getElementById('msgFinal').innerHTML = `Você é muito bom!<br>Você acertou ${porcentagemFinalDeAcertos} questões de 10!`
         }
 
 
@@ -404,20 +432,20 @@
                     idUsuario: idUsuario
                 }),
             })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
-                if (resposta.ok) {
-                    window.location.href = "dashboardShosen.html"
+                    if (resposta.ok) {
+                        window.location.href = "dashboardShosen.html"
 
 
-                } else {
-                    alert("Erro ao enviar seus dados")
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
+                    } else {
+                        alert("Erro ao enviar seus dados")
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
 
             return false;
 
