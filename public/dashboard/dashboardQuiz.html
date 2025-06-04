@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/sessao.js"></script>
-      <link rel="stylesheet" href="../style/elementosDash.css">
-      <link rel="stylesheet" href="../style/dashboardQuiz.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/sessao.js"></script>
+  <link rel="stylesheet" href="../style/elementosDash.css">
+  <link rel="stylesheet" href="../style/dashboardQuiz.css">
+  <link rel="icon" href="../assets/ShosenLogo.png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Document</title>
+  <title>Dash Quiz</title>
 </head>
+
 <body>
-    <nav class="header">
+  <nav class="header">
     <img src="../assets/Logo.png" class="LogoHeader">
     <ul class="links">
       <li class="btnHistoria"><a href="treino.html">Treinos</a></li>
@@ -22,46 +25,70 @@
     </ul>
   </nav>
   <div class="divDadosQuiz">
-  <div class="containerUsuario">
-<div class="dadosUsuario">
-  <h2>Seus acertos no quiz</h2>
-  <p id="pAcertosUsuario"></p>
-</div>
+    <div class="containerUsuario">
+      <div class="dadosUsuario">
+        <h2>Seus maior acerto no quiz</h2>
+        <p id="pAcertosUsuario"></p>
+      </div>
 
-<div class="dadosUsuario">
-  <h2>Média de acertos dos usuários</h2>
-  <p id = "pMediaAcertos"></p>
-</div>
-</div>
-<div class="dicas">
-  <h1>Dicas da Shosen</h1>
-  <div class="tresCardsDicas">
-    <div class="cardDica">
-      <img src="../assets/JudocaEstudando.png">
+      <div class="dadosUsuario">
+        <h2>Média de acertos dos usuários</h2>
+        <p id="pMediaAcertos"></p>
+      </div>
+    </div>
+    <div class="dicas">
+      <h1>Dicas da Shosen</h1>
+      <div class="tresCardsDicas">
+        <div class="cardDica">
+          <div class="cardIndividual">
+            <img src="../assets/JudocaEstudando.png">
+            <p>Separe momentos do seu dia para estudar sobre golpes, palavras e movimentos do judô.
+              Assistir competições ajuda a despertar o interesse em técnicas e maneiras diferentes de lutar, o que beneficiará
+              sua jornada dentro do judô.
+              <br>
+              <br>
+              <br>
+            </p>
+          </div>
+        </div>
+        <div class="cardDica">
+          <div class="cardIndividual">
+            <img src="../assets/judocaTreinando.png">
+            <p>Busque treinar movimentos e golpes que você viu outras pessoas fazendo. Isso aumentará seu arsenal
+              de golpes e imobilizações , tornando você um judoca mais completo e preparado para a próxima luta.<br>
+              <br>
+              <br>
+              <br>
+            </p>
+          </div>
+        </div>
+        <div class="cardDica">
+          <div class="cardIndividual">
+            <img src="../assets/judocaDescansando.png">
+            <p>Mantenha e deixe sua vida mais saudável. Após treinar ou praticar qualquer atividade física, é importante
+              descansar e se hidratar da forma correta. Deixe sua alimentação mais equilibrada e saudável para que seus 
+              treinos fiquem mais produtivos e aumentem sua longevidade de vida.
+              <br>
+              <br>
+            </p>
+          </div>
 
-    </div>
-    <div class="cardDica">
-      <img src="../assets/JudocaEstudando.png">
-      
-    </div>
-    <div class="cardDica">
-      <img src="../assets/JudocaEstudando.png">
-      
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 </body>
+
 </html>
 <script>
-n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
+  n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
 
-window.onload = function(){
-  acertosUsuario();
-  mediaAcertosUsuarios();
-}
+  window.onload = function () {
+    acertosUsuario();
+    mediaAcertosUsuarios();
+  }
 
-function acertosUsuario() {
+  function acertosUsuario() {
     const idUsuario = sessionStorage.ID_USUARIO;
 
     fetch(`/quiz/acertosUsuario/${idUsuario}`, {
@@ -79,7 +106,7 @@ function acertosUsuario() {
       })
       .then(resposta => {
         if (resposta && resposta.length > 0) {
-          document.getElementById('pAcertosUsuario').innerHTML = resposta[0].acertosUsuario;
+          document.getElementById('pAcertosUsuario').innerHTML = resposta[0].acertosUsuario + " acertos";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
           document.getElementById('pAcertosUsuario').innerHTML = "0 acertos";
@@ -108,7 +135,7 @@ function acertosUsuario() {
       })
       .then(resposta => {
         if (resposta && resposta.length > 0) {
-          document.getElementById('pMediaAcertos').innerHTML = resposta[0].mediaAcertosUsuarios;
+          document.getElementById('pMediaAcertos').innerHTML = resposta[0].mediaAcertosUsuarios + " acertos";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
           document.getElementById('pMediaAcertos').innerHTML = "0 acertos";

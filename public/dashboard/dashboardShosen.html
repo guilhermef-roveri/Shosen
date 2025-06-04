@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../style/elementosDash.css">
   <link rel="stylesheet" href="../style/dashboardShosen.css">
+  <link rel="icon" href="../assets/ShosenLogo.png">
   <script src="../js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Dashboard</title>
@@ -114,7 +115,7 @@
       })
       .then(resposta => {
         if (resposta && resposta.length > 0) {
-          document.getElementById('dado_TotalDeHoras').innerHTML = ((resposta[0].TempoTreinado )) + " minutos";
+          document.getElementById('dado_TotalDeHoras').innerHTML = ((resposta[0].TempoTreinado)) + " minutos";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
           document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
@@ -249,30 +250,30 @@
         }
         const mediaUsuarioUnico = data.map(item => item.MediaUsuario)
         const mediaGeralUsuarios = data.map(item => item.MediaGeral)
-       new Chart(idx, {
-        type: 'bar',
-        data: {
-          labels: ["Você", "Outros usuários"],
-          datasets: [{
-            label: 'Minutos por dia',
-            // Passar o index e separar por barra
-            data: [mediaUsuarioUnico[0], mediaGeralUsuarios[0]],
-            backgroundColor: ['rgba(169, 15, 15, 1)', 'rgba(169, 15, 15, 1)'],
-            borderColor: ['white', 'white'],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+        new Chart(idx, {
+          type: 'bar',
+          data: {
+            labels: ["Você", "Outros usuários"],
+            datasets: [{
+              label: 'Minutos por dia',
+              // Passar o index e separar por barra
+              data: [mediaUsuarioUnico[0], mediaGeralUsuarios[0]],
+              backgroundColor: ['rgba(169, 15, 15, 1)', 'rgba(169, 15, 15, 1)'],
+              borderColor: ['white', 'white'],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
+        });
+      })
+      .catch(erro => {
+        console.error("Erro ao buscar dados para o gráfico de média:", erro);
       });
-    })
-    .catch(erro => {
-      console.error("Erro ao buscar dados para o gráfico de média:", erro);
-    });
-}
+  }
 </script>

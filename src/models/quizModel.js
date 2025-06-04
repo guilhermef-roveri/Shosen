@@ -11,7 +11,7 @@ function cadastrar(acertos, idUsuario) {
 
 function acertosUsuario(idUsuario) {
     var instrucao = `
-    SELECT acertos as acertosUsuario FROM acertosQuiz INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}';`
+    SELECT MAX(acertos) as acertosUsuario FROM acertosQuiz INNER JOIN usuario on idUsuario = fkUsuario WHERE idUsuario = '${idUsuario}';`
 
     console.log("Executando a instrucao SQL : \n" + instrucao);
     return database.executar(instrucao);
