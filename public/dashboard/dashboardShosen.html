@@ -97,35 +97,7 @@
   const idx = document.getElementById('mySecondChart');
   var mediaUsuarios;
 
-  function buscarHorasTreinadas() {
-    const idUsuario = sessionStorage.ID_USUARIO;
-
-    fetch(`/treino/horasTotaisUsuario/${idUsuario}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error("Nenhum dado encontrado");
-        }
-      })
-      .then(resposta => {
-        if (resposta && resposta.length > 0) {
-          document.getElementById('dado_TotalDeHoras').innerHTML = ((resposta[0].TempoTreinado)) + " minutos";
-          // Retorna como um array, vou pegar no exato local do array.
-        } else {
-          document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
-        }
-      })
-      .catch(erro => {
-        console.error("Erro na requisição:", erro);
-      });
-  }
-
+    // Minutos totais treinados pelo usuário
   function buscarMediaUsuario() {
     const idUsuario = sessionStorage.ID_USUARIO;
 
@@ -143,7 +115,7 @@
         }
       })
       .then(resposta => {
-        if (resposta && resposta.length > 0) {
+        if (resposta && resposta.length > 0 && resposta[0].MediaTreinoUsuario != null) {
           document.getElementById('media_Usuario').innerHTML = resposta[0].MediaTreinoUsuario + " minutos / dia";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
@@ -153,8 +125,12 @@
       .catch(erro => {
         console.error("Erro na requisição:", erro);
       });
-  }
+  
+  
+    }
 
+
+    // KPI com dados de média dos outros usuários
   async function buscarMediaGeral() {
     const idUsuario = sessionStorage.ID_USUARIO;
 
@@ -176,9 +152,8 @@
 
           document.getElementById('media_geral').innerHTML = resposta[0].MediaTreinoGeral + " minutos / dia";
 
-
           // Retorna como um array, vou pegar no exato local do array.
-        } else {
+        }else{
           document.getElementById('media_geral').innerHTML = "0 minutos";
         }
       })
@@ -187,6 +162,41 @@
       });
   }
 
+  // KPI com dados de treino total do usuário
+  function buscarHorasTreinadas() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/treino/horasTotaisUsuario/${idUsuario}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.error("Nenhum dado encontrado");
+        }
+      })
+      .then(resposta => {
+        if (resposta && resposta.length > 0 && resposta[0].TempoTreinado != null) {
+          document.getElementById('dado_TotalDeHoras').innerHTML = ((resposta[0].TempoTreinado)) + " minutos";
+          // Retorna como um array, vou pegar no exato local do array.
+        } else {
+          document.getElementById('dado_TotalDeHoras').innerHTML = "0 minutos";
+        }
+      })
+      .catch(erro => {
+        console.error("Erro na requisição:", erro);
+      });
+  }
+
+
+
+  
+
+  // Média de treino dos últimos 7 dias treinados
   function horarioGrafico() {
     var idUsuario = sessionStorage.ID_USUARIO;
 
@@ -198,7 +208,7 @@
 
       .then(data => {
         if (data.length === 0) {
-          alert("Não há dados encontrados")
+          // alert("Não há dados encontrados")
           return
         }
         const horas = data.map(item => item.tempoTreino).reverse()
@@ -234,6 +244,7 @@
       })
   }
 
+  // Gráfico de  comparação de média do usuário com outros usuários
   function mediaTotal() {
     var idUsuario = sessionStorage.ID_USUARIO;
 

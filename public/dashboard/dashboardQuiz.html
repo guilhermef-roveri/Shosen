@@ -105,7 +105,7 @@
         }
       })
       .then(resposta => {
-        if (resposta && resposta.length > 0) {
+        if (resposta && resposta.length > 0 && resposta[0].acertosUsuario != null) {
           document.getElementById('pAcertosUsuario').innerHTML = resposta[0].acertosUsuario + " acertos";
           // Retorna como um array, vou pegar no exato local do array.
         } else {
