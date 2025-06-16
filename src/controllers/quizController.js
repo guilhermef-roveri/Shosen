@@ -25,7 +25,7 @@ function cadastrar(req, res) {
 function acertosUsuario(req,res){
     var idUsuario = req.params.idUsuario;
 
-    quizModel   .acertosUsuario(idUsuario).then(function (resposta){
+    quizModel.acertosUsuario(idUsuario).then(function (resposta){
         res.status(200).json(resposta);
     }).catch(function (erro){
         res.status(500).json(erro.sqlMessage);

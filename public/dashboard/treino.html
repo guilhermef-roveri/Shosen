@@ -39,7 +39,7 @@
       <div class="div_cardHoras">
         <h2>Monitore a duração de seus treino</h2>
         <p>Quantos minutos você treinou hoje?</p>
-        <input id="ipt_horas" placeholder="Digite as horas" type="number">
+        <input id="ipt_horas" placeholder="Digite os minutos" type="number">
         <button onclick="RegistrarTreinos()" style="cursor: pointer;">Registrar</button>
       </div>
     </div>
@@ -52,7 +52,7 @@
       </p>
     </div>
   </div>
-    <div class="fundoEscuro" id="divEscura2" style="display: none;">
+  <div class="fundoEscuro" id="divEscura2" style="display: none;">
 
     <div class="divAlertasAzul" id="alertaErro" style="display : none">
       <img src="../assets/icones/alertaErro.png">
@@ -68,6 +68,19 @@
   n_usuario.innerHTML = (sessionStorage.NOME_USUARIO).toUpperCase();
   function RegistrarTreinos() {
     var horasTreinoVar = Number(ipt_horas.value)
+
+    if (horasTreinoVar < 0 || horasTreinoVar > 720) {
+      document.getElementById('divEscura2').style.display = 'flex'
+      document.getElementById('alertaErro').style.display = 'flex'
+      document.getElementById('msgErro').innerHTML = `Insira menos de 720 minutos e um tempo positivo!`
+
+      setInterval(() => {
+        document.getElementById('divEscura2').style.display = 'none'
+        document.getElementById('alertaErro').style.display = 'none'
+      }, 3000);
+      return
+
+    }
     var idUsuario = sessionStorage.ID_USUARIO
     fetch("/treino/cadastrar", {
       method: "POST",
@@ -100,7 +113,7 @@
             setInterval(() => {
               document.getElementById('divEscura2').style.display = 'none'
               document.getElementById('alertaErro').style.display = 'none'
-            }, 5000);
+            }, 3000);
 
           });
           throw "Houve um erro ao tentar realizar o cadastro!";
